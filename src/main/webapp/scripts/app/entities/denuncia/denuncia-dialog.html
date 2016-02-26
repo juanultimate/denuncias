@@ -1,0 +1,80 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myDenunciaLabel">Create or edit a Denuncia</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="denuncia.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_codigo">Codigo</label>
+            <input type="text" class="form-control" name="codigo" id="field_codigo"
+                    ng-model="denuncia.codigo"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_canton">Canton</label>
+            <input type="text" class="form-control" name="canton" id="field_canton"
+                    ng-model="denuncia.canton"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_fecha">Fecha</label>
+            <input id="field_fecha" type="text" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="denuncia.fecha" is-open="datePickerForFecha.status.opened"
+            />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="datePickerForFechaOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_sancion">Sancion</label>
+            <input type="checkbox" class="form-control" name="sancion" id="field_sancion"
+                    ng-model="denuncia.sancion"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_estado">Estado</label>
+            <select class="form-control" name="estado" ng-model="denuncia.estado" id="field_estado">
+                <option value="CREADA">CREADA</option>
+                <option value="ENVIADA">ENVIADA</option>
+                <option value="PROCESO">PROCESO</option>
+                <option value="REGISTRADA">REGISTRADA</option>
+                <option value="ASIGNADA">ASIGNADA</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_distrito">Distrito</label>
+            <input type="text" class="form-control" name="distrito" id="field_distrito"
+                    ng-model="denuncia.distrito"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_tipoSancion">TipoSancion</label>
+            <input type="text" class="form-control" name="tipoSancion" id="field_tipoSancion"
+                    ng-model="denuncia.tipoSancion"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_placa">Placa</label>
+            <input type="text" class="form-control" name="placa" id="field_placa"
+                    ng-model="denuncia.placa"
+                     />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

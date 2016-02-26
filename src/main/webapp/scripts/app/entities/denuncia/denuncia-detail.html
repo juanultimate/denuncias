@@ -1,0 +1,86 @@
+
+<div>
+    <h2><span>Denuncia</span> {{denuncia.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Field</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span>Codigo</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{denuncia.codigo}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Canton</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{denuncia.canton}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Fecha</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{denuncia.fecha | date:'mediumDate'}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Sancion</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{denuncia.sancion}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Estado</span>
+                </td>
+                <td>
+                    <span class="form-control-static" translate="{{'denunciasApp.Com.denuncias.domain.Estado.' + denuncia.estado}}">{{denuncia.estado}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Distrito</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{denuncia.distrito}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>TipoSancion</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{denuncia.tipoSancion}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Placa</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{denuncia.placa}}</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>

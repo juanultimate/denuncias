@@ -1,0 +1,49 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "codigo",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "canton",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "fecha",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "sancion",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "estado",
+            "fieldType": "Com.denuncias.domain.Estado",
+            "fieldValues": "CREADA, ENVIADA, PROCESO, REGISTRADA, ASIGNADA"
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "distrito",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 7,
+            "fieldName": "tipoSancion",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 8,
+            "fieldName": "placa",
+            "fieldType": "String"
+        }
+    ],
+    "dto": "no",
+    "service": "no",
+    "pagination": "pager"
+}
