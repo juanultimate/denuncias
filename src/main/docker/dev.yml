@@ -1,0 +1,7 @@
+denuncias-dev-mongodb:
+  container_name: denuncias-dev-mongodb
+  image: mongo:3.0.7
+  # volumes:
+  #   - ~/volumes/jhipster/denuncias/dev-mongodb/:/data/db/
+  ports:
+    - "27017:27017"
