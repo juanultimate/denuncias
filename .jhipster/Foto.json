@@ -1,0 +1,20 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "codigo",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "data",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image",
+            "fieldValidateRules": []
+        }
+    ],
+    "dto": "no",
+    "service": "no",
+    "pagination": "no"
+}
