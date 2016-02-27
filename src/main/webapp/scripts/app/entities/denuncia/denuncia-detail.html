@@ -1,0 +1,79 @@
+
+<div>
+    <h2><span>Denuncia</span> {{denuncia.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Field</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span>Codigo</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{denuncia.codigo}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Fecha</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{denuncia.fecha | date:'mediumDate'}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Sancionable</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{denuncia.sancionable}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Latitud</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{denuncia.latitud}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Longitud</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{denuncia.longitud}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Placa</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{denuncia.placa}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Foto</span>
+                </td>
+                <td>
+                    <img data-ng-src="{{'data:' + denuncia.fotoContentType + ';base64,' + denuncia.foto}}" style="max-width: 100%;" ng-if="denuncia.foto"/>
+                    <div>{{denuncia.fotoContentType}}  {{byteSize(denuncia.foto)}}</div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>

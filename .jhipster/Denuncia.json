@@ -1,0 +1,44 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "codigo",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "fecha",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "sancionable",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "latitud",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "longitud",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "placa",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 7,
+            "fieldName": "foto",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        }
+    ],
+    "dto": "no",
+    "service": "no",
+    "pagination": "pager"
+}
