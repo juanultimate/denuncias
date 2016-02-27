@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import java.io.Serializable;
 import java.util.Objects;
 
-import com.denuncias.domain.enumeration.Com.denuncias.domain.Estado;
+import com.denuncias.domain.enumeration.Estado;
 
 /**
  * A Denuncia.
@@ -22,28 +22,28 @@ public class Denuncia implements Serializable {
 
     @Field("codigo")
     private String codigo;
-    
+
     @Field("canton")
     private String canton;
-    
+
     @Field("fecha")
     private LocalDate fecha;
-    
+
     @Field("sancion")
     private Boolean sancion;
-    
+
     @Field("estado")
-    private Com.denuncias.domain.Estado estado;
-    
+    private Estado estado;
+
     @Field("distrito")
     private String distrito;
-    
+
     @Field("tipo_sancion")
     private String tipoSancion;
-    
+
     @Field("placa")
     private String placa;
-    
+
     public String getId() {
         return id;
     }
@@ -55,7 +55,7 @@ public class Denuncia implements Serializable {
     public String getCodigo() {
         return codigo;
     }
-    
+
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
@@ -63,7 +63,7 @@ public class Denuncia implements Serializable {
     public String getCanton() {
         return canton;
     }
-    
+
     public void setCanton(String canton) {
         this.canton = canton;
     }
@@ -71,7 +71,7 @@ public class Denuncia implements Serializable {
     public LocalDate getFecha() {
         return fecha;
     }
-    
+
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
@@ -79,23 +79,23 @@ public class Denuncia implements Serializable {
     public Boolean getSancion() {
         return sancion;
     }
-    
+
     public void setSancion(Boolean sancion) {
         this.sancion = sancion;
     }
 
-    public Com.denuncias.domain.Estado getEstado() {
+    public Estado getEstado() {
         return estado;
     }
-    
-    public void setEstado(Com.denuncias.domain.Estado estado) {
+
+    public void setEstado(Estado estado) {
         this.estado = estado;
     }
 
     public String getDistrito() {
         return distrito;
     }
-    
+
     public void setDistrito(String distrito) {
         this.distrito = distrito;
     }
@@ -103,7 +103,7 @@ public class Denuncia implements Serializable {
     public String getTipoSancion() {
         return tipoSancion;
     }
-    
+
     public void setTipoSancion(String tipoSancion) {
         this.tipoSancion = tipoSancion;
     }
@@ -111,7 +111,7 @@ public class Denuncia implements Serializable {
     public String getPlaca() {
         return placa;
     }
-    
+
     public void setPlaca(String placa) {
         this.placa = placa;
     }
