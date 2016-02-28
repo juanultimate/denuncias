@@ -1,87 +1,73 @@
 <form name="editForm" role="form" ng-submit="save()" novalidate>
     <div>
-        <h2><span>Denuncia</span> {{denuncia.id}}</h2>
+        <h2><span>Denuncia:</span> {{denuncia.codigo}}</h2>
 
         <div class="container-fluid">
 
             <div class="row">
                 <div class="col-xs-6 col-sm-3">
-                    <tr>
-                        <td>
-                            <span>Foto</span>
-                        </td>
-                        <td>
-                            <img data-ng-src="{{'data:' + denuncia.fotoContentType + ';base64,' + denuncia.foto}}"
-                                 style="max-width: 100%;" ng-if="denuncia.foto"/>
-
-                        </td>
-                    </tr>
-
+                    <img data-ng-src="{{'data:' + denuncia.fotoContentType + ';base64,' + denuncia.foto}}"
+                         style="max-width: 100%;" ng-if="denuncia.foto"/>
                 </div>
-                <div class="col-xs-6 col-sm-3">
+                <div class="col-xs-6 col-sm-5">
+                    <table class="table table-striped">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <span>Codigo</span>
+                            </td>
+                            <td>
+                                <span class="form-control-static">{{denuncia.codigo}}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>Cant&oacute;n</span>
+                            </td>
+                            <td>
+                                <select name="canton" ng-model="denuncia.canton" class="form-control" required>
+                                    <option value="">---Please select---</option>
+                                    <option ng-repeat="option in cantons" value="{{option}}">{{option.nombre}}
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
 
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th>Field</th>
-                                <th>Value</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <span>Codigo</span>
-                                </td>
-                                <td>
-                                    <span class="form-control-static">{{denuncia.codigo}}</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span>Cant&oacute;n</span>
-                                </td>
-                                <td>
-                                    <select name="canton" ng-model="denuncia.canton" class="form-control" required>
-                                        <option value="">---Please select---</option>
-                                        <option ng-repeat="option in cantons" value="{{option}}">{{option.nombre}}
-                                        </option>
-                                    </select>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>
+                                <span>Fecha</span>
+                            </td>
+                            <td>
+                                <span class="form-control-static">{{denuncia.fecha | date:'mediumDate'}}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>Es sanci&oacute;n</span>
+                            </td>
+                            <td>
 
-                            <tr>
-                                <td>
-                                    <span>Fecha</span>
-                                </td>
-                                <td>
-                                    <span class="form-control-static">{{denuncia.fecha | date:'mediumDate'}}</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span>Sancionable</span>
-                                </td>
-                                <td>
-                                    <span class="form-control-static">{{denuncia.sancionable}}</span>
-                                </td>
-                            </tr>
+                                <input type="checkbox" ng-model="denuncia.sancionable" readonly disabled>
 
-                            </tbody>
-                            </table>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
                 </div>
 
                 <!-- Add the extra clearfix for only the required viewport -->
-                <div class="clearfix visible-xs-block"></div>
 
+                <div class="col-xs-6 col-sm-3">
+                    <tr>
+                        <td>
+                            <span>Coordenadas X:{{denuncia.latitud}} / Y: {{denuncia.longitud}}</span>
+                        </td>
 
-                <div class="col-xs-9 col-sm-6">  <tr>
-                    <td>
-                        <span>Coordenadas X:{{denuncia.latitud}} / Y: {{denuncia.longitud}}</span>
-                    </td>
-
-                    <td>
-                        <div map-denuncia=""  x="{{denuncia.longitud}}" y="{{denuncia.latitud}}" desc="{{denuncia.codigo}}"></div>
-                    </td>
+                        <td>
+                            <div map-denuncia="" x="{{denuncia.longitud}}" y="{{denuncia.latitud}}"
+                                 desc="{{denuncia.codigo}}"></div>
+                        </td>
 
                 </div>
             </div>
