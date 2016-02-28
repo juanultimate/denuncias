@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('denunciasApp')
-    .controller('DenunciaDetailController', function ($scope, $rootScope, $stateParams, DataUtils, entity, Denuncia) {
+    .controller('DenunciaDetailController', function ($scope, $rootScope, $stateParams, DataUtils, entity, Denuncia, Canton) {
         $scope.denuncia = entity;
+        $scope.cantons = [];
         $scope.load = function (id) {
             Denuncia.get({id: id}, function(result) {
                 $scope.denuncia = result;

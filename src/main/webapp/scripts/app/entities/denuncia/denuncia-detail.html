@@ -20,6 +20,18 @@
             </tr>
             <tr>
                 <td>
+                    <span>Cant&oacute;n</span>
+                </td>
+                <td>
+                    <select name="canton" ng-model="data.singleSelect" class="form-input" required>
+                        <option value="">---Please select---</option>
+                        <option ng-repeat="option in denuncia.cantons" value="{{option}}">{{option.nombre}}</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
                     <span>Fecha</span>
                 </td>
                 <td>

@@ -2,6 +2,7 @@ package com.denuncias.domain;
 
 import java.time.LocalDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -22,30 +23,34 @@ public class Denuncia implements Serializable {
 
     @Field("codigo")
     private String codigo;
-    
+
     @Field("fecha")
     private LocalDate fecha;
-    
+
     @Field("sancionable")
     private Boolean sancionable;
-    
+
     @Field("latitud")
     private String latitud;
-    
+
     @Field("longitud")
     private String longitud;
-    
+
     @Field("placa")
     private String placa;
-    
+
     @Field("estado")
     private Estado estado;
-    
+
     @Field("foto")
     private byte[] foto;
-    
+
     @Field("foto_content_type")
     private String fotoContentType;
+
+    @DBRef
+    private Canton canton;
+
     public String getId() {
         return id;
     }
@@ -57,7 +62,7 @@ public class Denuncia implements Serializable {
     public String getCodigo() {
         return codigo;
     }
-    
+
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
@@ -65,7 +70,7 @@ public class Denuncia implements Serializable {
     public LocalDate getFecha() {
         return fecha;
     }
-    
+
     public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
@@ -73,7 +78,7 @@ public class Denuncia implements Serializable {
     public Boolean getSancionable() {
         return sancionable;
     }
-    
+
     public void setSancionable(Boolean sancionable) {
         this.sancionable = sancionable;
     }
@@ -81,7 +86,7 @@ public class Denuncia implements Serializable {
     public String getLatitud() {
         return latitud;
     }
-    
+
     public void setLatitud(String latitud) {
         this.latitud = latitud;
     }
@@ -89,7 +94,7 @@ public class Denuncia implements Serializable {
     public String getLongitud() {
         return longitud;
     }
-    
+
     public void setLongitud(String longitud) {
         this.longitud = longitud;
     }
@@ -97,7 +102,7 @@ public class Denuncia implements Serializable {
     public String getPlaca() {
         return placa;
     }
-    
+
     public void setPlaca(String placa) {
         this.placa = placa;
     }
@@ -105,7 +110,7 @@ public class Denuncia implements Serializable {
     public Estado getEstado() {
         return estado;
     }
-    
+
     public void setEstado(Estado estado) {
         this.estado = estado;
     }
@@ -113,7 +118,7 @@ public class Denuncia implements Serializable {
     public byte[] getFoto() {
         return foto;
     }
-    
+
     public void setFoto(byte[] foto) {
         this.foto = foto;
     }
@@ -125,6 +130,15 @@ public class Denuncia implements Serializable {
     public void setFotoContentType(String fotoContentType) {
         this.fotoContentType = fotoContentType;
     }
+
+    public Canton getCanton() {
+        return canton;
+    }
+
+    public void setCanton(Canton canton) {
+        this.canton = canton;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -161,4 +175,6 @@ public class Denuncia implements Serializable {
             ", fotoContentType='" + fotoContentType + "'" +
             '}';
     }
+
+
 }
