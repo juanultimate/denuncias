@@ -6,8 +6,8 @@
             <div class="col-xs-4 no-padding-left">
                 <button class="btn btn-primary" ui-sref="denuncia.new" >
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span 
-                       >Create new Denuncia
+                    <span
+                       >Crear nueva denuncia
                     </span>
                 </button>
             </div>
@@ -18,28 +18,25 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="predicate" ascending="reverse" callback="loadAll()">
-                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+
                     <th jh-sort-by="codigo"><span>Codigo</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="fecha"><span>Fecha</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="sancionable"><span>Sancionable</span> <span class="glyphicon glyphicon-sort"></span></th>
+
                     <th jh-sort-by="latitud"><span>Latitud</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="longitud"><span>Longitud</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="placa"><span>Placa</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="estado"><span>Estado</span> <span class="glyphicon glyphicon-sort"></span></th>
+
+
                     <th jh-sort-by="foto"><span>Foto</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="denuncia in denuncias track by denuncia.id">
-                    <td><a ui-sref="denuncia.detail({id:denuncia.id})">{{denuncia.id}}</a></td>
-                    <td>{{denuncia.codigo}}</td>
-                        <td>{{denuncia.fecha | date:'mediumDate'}}</td>
-                    <td>{{denuncia.sancionable}}</td>
+
+                    <td><a ui-sref="denuncia.detail({id:denuncia.id})">{{denuncia.codigo}}</a></td>
+                    <td>{{denuncia.fecha | date:'mediumDate'}}</td>
                     <td>{{denuncia.latitud}}</td>
                     <td>{{denuncia.longitud}}</td>
-                    <td>{{denuncia.placa}}</td>
-                    <td translate="{{'denunciasApp.Estado.' + denuncia.estado}}">{{denuncia.estado}}</td>
                     <td>
                         <img data-ng-src="{{'data:' + denuncia.fotoContentType + ';base64,' + denuncia.foto}}" style="max-height: 30px;" ng-if="denuncia.foto"/> {{denuncia.fotoContentType}} {{byteSize(denuncia.foto)}}
                     </td>
@@ -47,20 +44,8 @@
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
                                     ui-sref="denuncia.detail({id:denuncia.id})"
-                                    class="btn btn-info btn-sm"> 
+                                    class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
-                                <span class="hidden-xs hidden-sm"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="denuncia.edit({id:denuncia.id})"
-                                    class="btn btn-primary btn-sm">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                                <span class="hidden-xs hidden-sm"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="denuncia.delete({id:denuncia.id})"
-                                    class="btn btn-danger btn-sm">                                    
-                                <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>
                         </div>
