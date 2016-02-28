@@ -233,3 +233,12 @@ ul#strengthBar {
 /* jhipster-needle-scss-add-main JHipster will add new css style */
 
 /* jhipster-needle-css-add-main JHipster will add new css style */
+
+
+
+
+
+#gmaps {
+    width: 450px;
+    height: 450px;
+}
