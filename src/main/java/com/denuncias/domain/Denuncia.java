@@ -8,6 +8,8 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.denuncias.domain.enumeration.Estado;
+
 /**
  * A Denuncia.
  */
@@ -35,6 +37,9 @@ public class Denuncia implements Serializable {
     
     @Field("placa")
     private String placa;
+    
+    @Field("estado")
+    private Estado estado;
     
     @Field("foto")
     private byte[] foto;
@@ -97,6 +102,14 @@ public class Denuncia implements Serializable {
         this.placa = placa;
     }
 
+    public Estado getEstado() {
+        return estado;
+    }
+    
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
     public byte[] getFoto() {
         return foto;
     }
@@ -143,6 +156,7 @@ public class Denuncia implements Serializable {
             ", latitud='" + latitud + "'" +
             ", longitud='" + longitud + "'" +
             ", placa='" + placa + "'" +
+            ", estado='" + estado + "'" +
             ", foto='" + foto + "'" +
             ", fotoContentType='" + fotoContentType + "'" +
             '}';

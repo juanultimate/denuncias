@@ -53,6 +53,14 @@
                     ng-model="denuncia.placa"
                      />
         </div>
+        <div class="form-group">
+            <label class="control-label" for="field_estado">Estado</label>
+            <select class="form-control" name="estado" ng-model="denuncia.estado" id="field_estado">
+                <option value="Creada">Creada</option>
+                <option value="Enviada">Enviada</option>
+                <option value="Notificada">Notificada</option>
+            </select>
+        </div>
         <div class="form-group" ngf-drop ngf-change="setFoto($file, denuncia)" ngf-pattern="'image/*'">
             <label class="control-label" for="field_foto">Foto</label>
             <div>

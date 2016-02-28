@@ -58,6 +58,7 @@ angular.module('denunciasApp')
                                     latitud: null,
                                     longitud: null,
                                     placa: null,
+                                    estado: null,
                                     foto: null,
                                     fotoContentType: null,
                                     id: null

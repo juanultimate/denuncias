@@ -31,6 +31,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.denuncias.domain.enumeration.Estado;
 
 /**
  * Test class for the DenunciaResource REST controller.
@@ -57,6 +58,9 @@ public class DenunciaResourceIntTest {
     private static final String UPDATED_LONGITUD = "BBBBB";
     private static final String DEFAULT_PLACA = "AAAAA";
     private static final String UPDATED_PLACA = "BBBBB";
+    
+    private static final Estado DEFAULT_ESTADO = Estado.Creada;
+    private static final Estado UPDATED_ESTADO = Estado.Enviada;
 
     private static final byte[] DEFAULT_FOTO = TestUtil.createByteArray(1, "0");
     private static final byte[] UPDATED_FOTO = TestUtil.createByteArray(2, "1");
@@ -96,6 +100,7 @@ public class DenunciaResourceIntTest {
         denuncia.setLatitud(DEFAULT_LATITUD);
         denuncia.setLongitud(DEFAULT_LONGITUD);
         denuncia.setPlaca(DEFAULT_PLACA);
+        denuncia.setEstado(DEFAULT_ESTADO);
         denuncia.setFoto(DEFAULT_FOTO);
         denuncia.setFotoContentType(DEFAULT_FOTO_CONTENT_TYPE);
     }
@@ -121,6 +126,7 @@ public class DenunciaResourceIntTest {
         assertThat(testDenuncia.getLatitud()).isEqualTo(DEFAULT_LATITUD);
         assertThat(testDenuncia.getLongitud()).isEqualTo(DEFAULT_LONGITUD);
         assertThat(testDenuncia.getPlaca()).isEqualTo(DEFAULT_PLACA);
+        assertThat(testDenuncia.getEstado()).isEqualTo(DEFAULT_ESTADO);
         assertThat(testDenuncia.getFoto()).isEqualTo(DEFAULT_FOTO);
         assertThat(testDenuncia.getFotoContentType()).isEqualTo(DEFAULT_FOTO_CONTENT_TYPE);
     }
@@ -141,6 +147,7 @@ public class DenunciaResourceIntTest {
                 .andExpect(jsonPath("$.[*].latitud").value(hasItem(DEFAULT_LATITUD.toString())))
                 .andExpect(jsonPath("$.[*].longitud").value(hasItem(DEFAULT_LONGITUD.toString())))
                 .andExpect(jsonPath("$.[*].placa").value(hasItem(DEFAULT_PLACA.toString())))
+                .andExpect(jsonPath("$.[*].estado").value(hasItem(DEFAULT_ESTADO.toString())))
                 .andExpect(jsonPath("$.[*].fotoContentType").value(hasItem(DEFAULT_FOTO_CONTENT_TYPE)))
                 .andExpect(jsonPath("$.[*].foto").value(hasItem(Base64Utils.encodeToString(DEFAULT_FOTO))));
     }
@@ -161,6 +168,7 @@ public class DenunciaResourceIntTest {
             .andExpect(jsonPath("$.latitud").value(DEFAULT_LATITUD.toString()))
             .andExpect(jsonPath("$.longitud").value(DEFAULT_LONGITUD.toString()))
             .andExpect(jsonPath("$.placa").value(DEFAULT_PLACA.toString()))
+            .andExpect(jsonPath("$.estado").value(DEFAULT_ESTADO.toString()))
             .andExpect(jsonPath("$.fotoContentType").value(DEFAULT_FOTO_CONTENT_TYPE))
             .andExpect(jsonPath("$.foto").value(Base64Utils.encodeToString(DEFAULT_FOTO)));
     }
@@ -186,6 +194,7 @@ public class DenunciaResourceIntTest {
         denuncia.setLatitud(UPDATED_LATITUD);
         denuncia.setLongitud(UPDATED_LONGITUD);
         denuncia.setPlaca(UPDATED_PLACA);
+        denuncia.setEstado(UPDATED_ESTADO);
         denuncia.setFoto(UPDATED_FOTO);
         denuncia.setFotoContentType(UPDATED_FOTO_CONTENT_TYPE);
 
@@ -204,6 +213,7 @@ public class DenunciaResourceIntTest {
         assertThat(testDenuncia.getLatitud()).isEqualTo(UPDATED_LATITUD);
         assertThat(testDenuncia.getLongitud()).isEqualTo(UPDATED_LONGITUD);
         assertThat(testDenuncia.getPlaca()).isEqualTo(UPDATED_PLACA);
+        assertThat(testDenuncia.getEstado()).isEqualTo(UPDATED_ESTADO);
         assertThat(testDenuncia.getFoto()).isEqualTo(UPDATED_FOTO);
         assertThat(testDenuncia.getFotoContentType()).isEqualTo(UPDATED_FOTO_CONTENT_TYPE);
     }

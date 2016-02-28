@@ -33,6 +33,12 @@
         },
         {
             "fieldId": 7,
+            "fieldName": "estado",
+            "fieldType": "Estado",
+            "fieldValues": "Creada,Enviada,Notificada"
+        },
+        {
+            "fieldId": 8,
             "fieldName": "foto",
             "fieldType": "byte[]",
             "fieldTypeBlobContent": "image"
