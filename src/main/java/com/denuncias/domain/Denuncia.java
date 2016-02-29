@@ -173,6 +173,7 @@ public class Denuncia implements Serializable {
             ", estado='" + estado + "'" +
             ", foto='" + foto + "'" +
             ", fotoContentType='" + fotoContentType + "'" +
+            ", canton='"+canton.toString()+
             '}';
     }
 
