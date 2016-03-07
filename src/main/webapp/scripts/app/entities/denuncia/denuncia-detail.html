@@ -43,11 +43,15 @@
                         </tr>
                         <tr>
                             <td>
-                                <span>Es sanci&oacute;n</span>
+                                <span></span>
                             </td>
                             <td>
 
-                                <input type="checkbox" ng-model="denuncia.sancionable" readonly disabled>
+                                <label data-ng-repeat="choice in question.choices">
+                                    <input type="radio" name="response" data-ng-model="denuncia.sancionable" data-ng-value="choice.sancionable"/>
+                                    {{choice.text}}
+                                </label>
+
 
                             </td>
                         </tr>

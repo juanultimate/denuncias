@@ -4,6 +4,13 @@ angular.module('denunciasApp')
     .controller('DenunciaDetailController', function ($scope, $rootScope, $stateParams, DataUtils, entity, Denuncia, Canton) {
         $scope.denuncia = entity;
         $scope.cantons = [];
+        $scope.loadSanciones = function(){
+            $scope.question= new Object();
+            $scope.question.choices = [];
+            $scope.question.choices[0] = Object.create({}, { text: { value: "Es válido"}, sancionable : {value:true}});
+            $scope.question.choices[1] = Object.create({}, { text: { value: "No es válido"}, sancionable : {value:false}});
+        };
+        $scope.loadSanciones();
 
         $scope.load = function (id) {
             Denuncia.get({id: id}, function(result) {
@@ -33,7 +40,6 @@ angular.module('denunciasApp')
 
         var onSaveSuccess = function (result) {
             $scope.$emit('denunciasApp:denunciaUpdate', result);
-            $uibModalInstance.close(result);
             $scope.isSaving = false;
         };
 
