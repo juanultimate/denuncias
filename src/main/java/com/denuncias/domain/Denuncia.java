@@ -54,6 +54,11 @@ public class Denuncia implements Serializable {
     @Field("direccion")
     private String direccion;
 
+    @Field("pagado")
+    private Boolean pagado;
+
+
+
     @DBRef
     private Canton canton;
 
@@ -153,6 +158,14 @@ public class Denuncia implements Serializable {
         this.direccion = direccion;
     }
 
+    public Boolean getPagado() {
+        return pagado;
+    }
+
+    public void setPagado(Boolean pagado) {
+        this.pagado = pagado;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -189,6 +202,7 @@ public class Denuncia implements Serializable {
             ", fotoContentType='" + fotoContentType + "'" +
             //", canton='"+canton.toString()+
             ", direccion='" + direccion + "'" +
+            ", pagado='" + pagado + "'" +
             '}';
     }
 

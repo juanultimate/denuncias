@@ -48,9 +48,12 @@
             "fieldId": 9,
             "fieldName": "direccion",
             "fieldType": "String"
+        },
+        {
+            "fieldId": 10,
+            "fieldName": "pagado",
+            "fieldType": "Boolean"
         }
-
-
     ],
     "dto": "no",
     "service": "no",

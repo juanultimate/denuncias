@@ -59,6 +59,21 @@
                 "created_date": new Date(),
                 "authorities": [{"_id": "ROLE_USER"}]
             });
+
+            db.jhi_user.insert(
+            {
+            "_id" : "user-4",
+            "login" : "ant",
+            "password" : "$2a$10$VEjxo0jq2YG9Rbk2HmX9S.k1uZBGYUHdUcid3g/vfiEl7lwWgOH/K",
+            "first_name": "",
+            "last_name": "Ant",
+            "email": "ant@localhost",
+            "activated": "true",
+            "lang_key": "en",
+            "created_by": "system",
+            "created_date": new Date(),
+            "authorities": [{"_id": "ROLE_ANT"}]
+            });
         </script>
     </changeSet>
 </mongoChangeLog>
