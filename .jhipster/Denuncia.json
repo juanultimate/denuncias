@@ -42,7 +42,15 @@
             "fieldName": "foto",
             "fieldType": "byte[]",
             "fieldTypeBlobContent": "image"
+        },
+
+        {
+            "fieldId": 9,
+            "fieldName": "direccion",
+            "fieldType": "String"
         }
+
+
     ],
     "dto": "no",
     "service": "no",

@@ -7,9 +7,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
 import com.denuncias.domain.enumeration.Estado;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * A Denuncia.
@@ -25,6 +27,7 @@ public class Denuncia implements Serializable {
     private String codigo;
 
     @Field("fecha")
+    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE_TIME)
     private LocalDate fecha;
 
     @Field("sancionable")
@@ -47,6 +50,9 @@ public class Denuncia implements Serializable {
 
     @Field("foto_content_type")
     private String fotoContentType;
+
+    @Field("direccion")
+    private String direccion;
 
     @DBRef
     private Canton canton;
@@ -139,6 +145,14 @@ public class Denuncia implements Serializable {
         this.canton = canton;
     }
 
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -174,8 +188,10 @@ public class Denuncia implements Serializable {
             ", foto='" + foto + "'" +
             ", fotoContentType='" + fotoContentType + "'" +
             //", canton='"+canton.toString()+
+            ", direccion='" + direccion + "'" +
             '}';
     }
+
 
 
 }

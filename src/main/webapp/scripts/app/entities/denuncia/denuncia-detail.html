@@ -41,6 +41,17 @@
                                 <span class="form-control-static">{{denuncia.fecha | date:'mediumDate'}}</span>
                             </td>
                         </tr>
+
+                        <tr>
+                            <td>
+                                <span>Hora</span>
+                            </td>
+                            <td>
+                                <span class="form-control-static">{{denuncia.fecha | date:'shortTime'}}</span>
+                            </td>
+                        </tr>
+
+
                         <tr>
                             <td>
                                 <span></span>
@@ -68,10 +79,22 @@
                             <span>Coordenadas X:{{denuncia.latitud}} / Y: {{denuncia.longitud}}</span>
                         </td>
 
+
+
+                        <td>
+                            <span>Dirección:{{denuncia.direccion}} </span>
+                        </td>
+
+
+
                         <td>
                             <div map-denuncia="" x="{{denuncia.longitud}}" y="{{denuncia.latitud}}"
                                  desc="{{denuncia.codigo}}"></div>
                         </td>
+                    </tr>
+
+
+
 
                 </div>
             </div>

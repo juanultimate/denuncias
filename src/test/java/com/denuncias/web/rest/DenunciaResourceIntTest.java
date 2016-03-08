@@ -25,6 +25,7 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -58,7 +59,7 @@ public class DenunciaResourceIntTest {
     private static final String UPDATED_LONGITUD = "BBBBB";
     private static final String DEFAULT_PLACA = "AAAAA";
     private static final String UPDATED_PLACA = "BBBBB";
-    
+
     private static final Estado DEFAULT_ESTADO = Estado.Creada;
     private static final Estado UPDATED_ESTADO = Estado.Enviada;
 
