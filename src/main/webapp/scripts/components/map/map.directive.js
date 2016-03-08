@@ -1,14 +1,14 @@
 'use strict';
 
 angular.module('denunciasApp')
-    .directive('mapDenuncia', function(AlertService) {
-        var link = function(scope, element, attrs) {
+    .directive('mapDenuncia', function (AlertService) {
+        var link = function (scope, element, attrs) {
             var map, infoWindow;
             var markers = [];
 
             // map config
             var mapOptions = {
-                center: new google.maps.LatLng(attrs.x,attrs.y),
+                center: new google.maps.LatLng(attrs.x, attrs.y),
                 zoom: 18,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 scrollwheel: false
@@ -50,7 +50,7 @@ angular.module('denunciasApp')
 
             // show the map and place some markers
             initMap();
-            setMarker(map, new google.maps.LatLng(attrs.x, attrs.y), 'London',attrs.desc);
+            setMarker(map, new google.maps.LatLng(attrs.x, attrs.y), 'London', attrs.desc);
 
         };
 
