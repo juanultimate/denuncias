@@ -29,10 +29,10 @@ import java.util.Optional;
 public class DenunciaResource {
 
     private final Logger log = LoggerFactory.getLogger(DenunciaResource.class);
-        
+
     @Inject
     private DenunciaRepository denunciaRepository;
-    
+
     /**
      * POST  /denuncias -> Create a new denuncia.
      */
@@ -45,7 +45,10 @@ public class DenunciaResource {
         if (denuncia.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("denuncia", "idexists", "A new denuncia cannot already have an ID")).body(null);
         }
+
+
         Denuncia result = denunciaRepository.save(denuncia);
+
         return ResponseEntity.created(new URI("/api/denuncias/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("denuncia", result.getId().toString()))
             .body(result);
@@ -79,7 +82,7 @@ public class DenunciaResource {
     public ResponseEntity<List<Denuncia>> getAllDenuncias(Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of Denuncias");
-        Page<Denuncia> page = denunciaRepository.findAll(pageable); 
+        Page<Denuncia> page = denunciaRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/denuncias");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
