@@ -16,6 +16,7 @@ import java.util.Objects;
  */
 
 @Document(collection = "canton")
+
 public class Canton implements Serializable {
     @JsonCreator
     public Canton(@JsonProperty("id") String id, @JsonProperty("codigo") String codigo, @JsonProperty("nombre") String nombre) {
@@ -26,6 +27,12 @@ public class Canton implements Serializable {
 
     public Canton() {
     }
+
+    public Canton(String codigo, String nombre) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+    }
+
 
 
     @JsonCreator

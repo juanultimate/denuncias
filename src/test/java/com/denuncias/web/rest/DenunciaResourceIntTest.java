@@ -24,7 +24,9 @@ import org.springframework.util.Base64Utils;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.List;
 
@@ -48,8 +50,8 @@ public class DenunciaResourceIntTest {
     private static final String DEFAULT_CODIGO = "AAAAA";
     private static final String UPDATED_CODIGO = "BBBBB";
 
-    private static final LocalDate DEFAULT_FECHA = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_FECHA = LocalDate.now(ZoneId.systemDefault());
+    private static final LocalDateTime DEFAULT_FECHA = LocalDateTime.ofEpochSecond(0L,0, ZoneOffset.UTC);
+    private static final LocalDateTime UPDATED_FECHA = LocalDateTime.now(ZoneId.systemDefault());
 
     private static final Boolean DEFAULT_SANCIONABLE = false;
     private static final Boolean UPDATED_SANCIONABLE = true;

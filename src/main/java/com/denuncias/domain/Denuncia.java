@@ -1,12 +1,16 @@
 package com.denuncias.domain;
 
 import java.time.LocalDate;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.boon.json.serializers.impl.JsonDateSerializer;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 
@@ -28,7 +32,7 @@ public class Denuncia implements Serializable {
 
     @Field("fecha")
     @DateTimeFormat(iso= DateTimeFormat.ISO.DATE_TIME)
-    private LocalDate fecha;
+    private LocalDateTime fecha;
 
     @Field("sancionable")
     private Boolean sancionable;
@@ -78,11 +82,11 @@ public class Denuncia implements Serializable {
         this.codigo = codigo;
     }
 
-    public LocalDate getFecha() {
+    public LocalDateTime getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
 

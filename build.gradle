@@ -152,8 +152,7 @@ dependencies {
     compile 'org.apache.httpcomponents:httpclient:4.5.1'
     compile 'commons-lang:commons-lang:2.3'
     compile 'org.json:json:20160212'
-
-
+    compile 'org.projectlombok:lombok-maven:1.16.8.0'
 
     testCompile group: 'com.jayway.awaitility', name: 'awaitility', version: awaility_version
     testCompile group: 'com.jayway.jsonpath', name: 'json-path'
