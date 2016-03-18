@@ -25,11 +25,12 @@
                                 <span>Cant&oacute;n</span>
                             </td>
                             <td>
-                                <select name="canton" ng-model="denuncia.canton" class="form-control" required>
+                                <!--select name="canton" ng-model="denuncia.canton" class="form-control" required>
                                     <option value="">Seleccione</option>
                                     <option ng-repeat="option in cantons" value="{{option}}">{{option.nombre}}
                                     </option>
-                                </select>
+                                </select-->
+                                <span class="form-control-static">{{denuncia.canton.nombre}}</span>
                             </td>
                         </tr>
 
@@ -60,7 +61,7 @@
 
                                 <label data-ng-repeat="choice in question.choices">
                                     <input type="radio" name="response" data-ng-model="denuncia.sancionable" data-ng-value="choice.sancionable"/>
-                                    {{choice.text}}
+                                    {{choice.text}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 </label>
 
 

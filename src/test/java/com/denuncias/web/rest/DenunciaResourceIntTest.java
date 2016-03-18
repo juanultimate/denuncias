@@ -50,8 +50,8 @@ public class DenunciaResourceIntTest {
     private static final String DEFAULT_CODIGO = "AAAAA";
     private static final String UPDATED_CODIGO = "BBBBB";
 
-    private static final LocalDateTime DEFAULT_FECHA = LocalDateTime.ofEpochSecond(0L,0, ZoneOffset.UTC);
-    private static final LocalDateTime UPDATED_FECHA = LocalDateTime.now(ZoneId.systemDefault());
+    private static final Date DEFAULT_FECHA = new Date();
+    private static final Date UPDATED_FECHA = new Date();
 
     private static final Boolean DEFAULT_SANCIONABLE = false;
     private static final Boolean UPDATED_SANCIONABLE = true;

@@ -67,7 +67,7 @@ public class DenunciaResource {
         }
         denuncia.setDireccion(LocationUtil.getDireccion(denuncia.getLatitud(),denuncia.getLongitud()));
         denuncia.setCanton(canton);
-        denuncia.setFecha(LocalDateTime.now());
+        denuncia.setFecha(new Date());
         denuncia.setEstado(Estado.Creada);
         Denuncia result = denunciaRepository.save(denuncia);
         return ResponseEntity.created(new URI("/api/denuncias/" + result.getId()))
