@@ -30,6 +30,7 @@ angular.module('denunciasApp')
         });
 
         $scope.save = function () {
+            $scope.denuncia.estado = "Enviada";
             $scope.isSaving = true;
             if ($scope.denuncia.id != null) {
                 Denuncia.update($scope.denuncia, onSaveSuccess, onSaveError);
