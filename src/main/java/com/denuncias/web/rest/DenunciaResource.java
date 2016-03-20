@@ -100,10 +100,10 @@ public class DenunciaResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<List<Denuncia>> getAllDenuncias(Pageable pageable)
+    public ResponseEntity<List<Denuncia>> getAllDenuncias(Pageable pageable, @RequestParam(value="estado", required=false) String estado)
         throws URISyntaxException {
         log.debug("REST request to get a page of Denuncias");
-        Page<Denuncia> page = denunciaRepository.findAll(pageable);
+        Page<Denuncia> page = denunciaRepository.findByEstadoLike(estado, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/denuncias");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

@@ -8,7 +8,7 @@ angular.module('denunciasApp')
         $scope.reverse = true;
         $scope.page = 1;
         $scope.loadAll = function() {
-            Denuncia.query({page: $scope.page - 1, size: 20, sort: [$scope.predicate + ',' + ($scope.reverse ? 'asc' : 'desc'), 'id']}, function(result, headers) {
+            Denuncia.query({page: $scope.page - 1, size: 20, sort: [$scope.predicate + ',' + ($scope.reverse ? 'asc' : 'desc'), 'id'], estado:'Enviada'}, function(result, headers) {
                 $scope.links = ParseLinks.parse(headers('link'));
                 $scope.totalItems = headers('X-Total-Count');
                 $scope.denuncias = result;

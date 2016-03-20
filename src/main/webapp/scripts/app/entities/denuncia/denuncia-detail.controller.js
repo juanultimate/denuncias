@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('denunciasApp')
-    .controller('DenunciaDetailController', function ($scope, $rootScope, $stateParams, DataUtils, entity, Denuncia, Canton) {
+    .controller('DenunciaDetailController', function ($scope, $rootScope, $stateParams, DataUtils, entity, Denuncia, Canton, $location) {
         $scope.denuncia = entity;
         $scope.cantons = [];
         $scope.loadSanciones = function(){
@@ -42,6 +42,7 @@ angular.module('denunciasApp')
         var onSaveSuccess = function (result) {
             $scope.$emit('denunciasApp:denunciaUpdate', result);
             $scope.isSaving = false;
+            $location.path( "/denuncias" );
         };
 
         var onSaveError = function (result) {
