@@ -8,7 +8,7 @@ angular.module('denunciasApp')
 
             // map config
             var mapOptions = {
-                center: new google.maps.LatLng(attrs.x, attrs.y),
+                center: new google.maps.LatLng(attrs.y, attrs.x),
                 zoom: 18,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 scrollwheel: false
@@ -50,7 +50,7 @@ angular.module('denunciasApp')
 
             // show the map and place some markers
             initMap();
-            setMarker(map, new google.maps.LatLng(attrs.x, attrs.y), 'London', attrs.desc);
+            setMarker(map, new google.maps.LatLng(attrs.y, attrs.x), 'London', attrs.desc);
 
         };
 
