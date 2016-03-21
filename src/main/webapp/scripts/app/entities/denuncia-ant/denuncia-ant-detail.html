@@ -25,11 +25,7 @@
                                 <span>Cant&oacute;n</span>
                             </td>
                             <td>
-                                <select name="canton" ng-model="denuncia.canton" class="form-control" required>
-                                    <option value="">Seleccione</option>
-                                    <option ng-repeat="option in cantons" value="{{option}}">{{option.nombre}}
-                                    </option>
-                                </select>
+                                <span class="form-control-static">{{denuncia.canton.nombre}}</span>
                             </td>
                         </tr>
 
@@ -59,7 +55,7 @@
                             <td>
 
                                 <label data-ng-repeat="choice in question.choices">
-                                    <input type="radio" name="response" data-ng-model="denuncia.sancionable" data-ng-value="choice.sancionable"/>
+                                    <input type="radio" name="response" data-ng-model="denuncia.sancionable" data-ng-value="choice.sancionable" disabled>
                                     {{choice.text}}
                                 </label>
 
@@ -73,7 +69,7 @@
                             <td>
 
                                 <label data-ng-repeat="choice in pago.choices">
-                                    <input type="radio" name="response" data-ng-model="denuncia.pagado" data-ng-value="choice.pagado"/>
+                                    <input type="radio" name="response" data-ng-model="denuncia.pagado" data-ng-value="choice.pagado"  />
                                     {{choice.text}}
                                 </label>
 
@@ -103,7 +99,7 @@
 
 
                         <td>
-                            <div map-denuncia="" x="{{denuncia.longitud}}" y="{{denuncia.latitud}}"
+                            <div id="mapa" class=".mapa" map-denuncia="" x="{{denuncia.longitud}}" y="{{denuncia.latitud}}"
                                  desc="{{denuncia.codigo}}"></div>
                         </td>
                     </tr>
@@ -113,6 +109,7 @@
 
                 </div>
             </div>
+            <button ng-click="descargar()">asdkjfaklsdjflñaksdfklñj</button>
         </div>
 
 

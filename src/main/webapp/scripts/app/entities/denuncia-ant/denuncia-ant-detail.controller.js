@@ -56,6 +56,18 @@ angular.module('denunciasApp')
             $scope.isSaving = false;
         };
 
+        $scope.descargar=function(){
+            console.log("dfasdasdf");
+            html2canvas($(".mapa"), {
+                onrendered: function(canvas) {
+                    document.body.appendChild(canvas);
+                    canvas.toBlob(function(blob) {
+                        saveAs(blob, "Dashboard.png");
+                    });
+                }
+            });
+        };
+
 
 
     });
