@@ -27,11 +27,9 @@ module.exports = function (config) {
             'main/webapp/bower_components/json3/lib/json3.js',
             'main/webapp/bower_components/ng-file-upload/ng-file-upload.js',
             'main/webapp/bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js',
-            'main/webapp/bower_components/angular-simple-logger/dist/angular-simple-logger.js',
-            'main/webapp/bower_components/lodash/lodash.js',
-            'main/webapp/bower_components/angular-google-maps/dist/angular-google-maps.js',
             'main/webapp/bower_components/html2canvas/build/html2canvas.js',
             'main/webapp/bower_components/FileSaver/FileSaver.js',
+            'main/webapp/bower_components/ngmap/build/scripts/ng-map.js',
             'main/webapp/bower_components/angular-mocks/angular-mocks.js',
             // endbower
             'main/webapp/scripts/app/app.js',
