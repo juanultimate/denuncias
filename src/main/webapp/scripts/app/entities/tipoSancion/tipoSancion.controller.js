@@ -11,7 +11,7 @@ angular.module('denunciasApp')
                 caption: "reporte 1",
                 subCaption: "Alertas por Cantón",
                 numberPrefix: "$",
-                theme: "asd"
+                theme: ""
             },
             data:[{
                 label: "Quito",
