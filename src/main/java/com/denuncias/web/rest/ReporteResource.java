@@ -1,7 +1,9 @@
 package com.denuncias.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.denuncias.domain.Canton;
 import com.denuncias.domain.Denuncia;
+import com.denuncias.domain.ReportData;
 import com.denuncias.repository.CantonRepository;
 import com.denuncias.repository.DenunciaRepository;
 import com.denuncias.web.rest.util.PaginationUtil;
@@ -14,6 +16,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
+import org.springframework.data.mongodb.core.query.BasicQuery;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -28,6 +33,7 @@ import static org.springframework.data.mongodb.core.query.Query.query;
 
 import javax.inject.Inject;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -56,10 +62,6 @@ public class ReporteResource {
     @Inject
     CantonRepository cantonRepository;
 
-    class Data{
-        String label;
-        Integer Value;
-    }
 
 
     /**
@@ -69,16 +71,13 @@ public class ReporteResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<List<Data>> getData(@RequestParam(value="tipo", required=true) String tipo)throws URISyntaxException {
+    public ResponseEntity<List<ReportData>> getData(@RequestParam(value="tipo", required=false) String tipo)throws URISyntaxException {
         log.debug("REST request to get a Data Report");
-        mongoTemplate.find(query(where("canton.nombre").lt(50)
-            .and("accounts.balance").gt(1000.00d)), Person.class)
-
-        List<Data> datas = denunciaRepository.findByEstadoLike(estado, pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/denuncias");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+        List<ReportData> data = new ArrayList<ReportData>();
+        for (Canton canton:cantonRepository.findAll()) {
+            Long count = denunciaRepository.countByCanton(canton);
+            data.add(new ReportData(canton.getNombre(), count));
+        }
+        return new ResponseEntity<>(data,HttpStatus.OK);
     }
-
-
-
 }

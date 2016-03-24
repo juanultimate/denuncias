@@ -10,7 +10,7 @@ angular.module('denunciasApp')
             chart: {
                 caption: "reporte 1",
                 subCaption: "Alertas por Cantón",
-                numberPrefix: "$",
+                numberPrefix: "",
                 theme: ""
             },
             data:[{

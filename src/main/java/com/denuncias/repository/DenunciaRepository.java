@@ -14,6 +14,7 @@ import java.util.List;
  */
 public interface DenunciaRepository extends MongoRepository<Denuncia,String> {
     Page<Denuncia> findByEstadoLike (String estado, Pageable pageable);
-    //List<Denuncia> findByEstado(String estado);
+    Long countByCanton(Canton canton);
+
 
 }
