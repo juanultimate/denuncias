@@ -15,6 +15,10 @@ import java.util.List;
 public interface DenunciaRepository extends MongoRepository<Denuncia,String> {
     Page<Denuncia> findByEstadoLike (String estado, Pageable pageable);
     Long countByCanton(Canton canton);
+    Long countByPagado(Boolean pagado);
+
+
+
 
 
 }

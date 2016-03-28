@@ -25,6 +25,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -67,7 +68,7 @@ public class DenunciaResource {
         }
         denuncia.setDireccion(LocationUtil.getDireccion(denuncia.getLatitud(),denuncia.getLongitud()));
         denuncia.setCanton(canton);
-        denuncia.setFecha(new Date());
+        denuncia.setFecha(ZonedDateTime.now());
         denuncia.setEstado(Estado.Creada);
         Denuncia result = denunciaRepository.save(denuncia);
         return ResponseEntity.created(new URI("/api/denuncias/" + result.getId()))
