@@ -1,10 +1,20 @@
 'use strict';
 
 angular.module('denunciasApp')
-    .controller('TipoSancionController', function ($scope, $state, TipoSancion, ParseLinks) {
-        $scope.loadPage = function(page) {
+    .controller('TipoSancionController', function ($scope, $state, Reporte, ParseLinks) {
 
+        $scope.data;
+        $scope.tipoSancion;
+
+        $scope.loadAll = function() {
+            Reporte.query({tipo : 'Creada'}, function(result) {
+                $scope.data = result;
+            });
         };
+
+        $scope.loadAll();
+
+
 
         $scope.myDataSource = {
             chart: {

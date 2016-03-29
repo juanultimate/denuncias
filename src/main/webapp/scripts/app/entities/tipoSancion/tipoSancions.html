@@ -6,23 +6,33 @@
         <div class="form-group">
             <label for="tipo-reporte">Tipo reporte</label>
             <select class="form-control" name="tipó-reporte" ng-model="tipoResporte" id="tipo-reporte">
-                <option value="1">Por D&iacute;a</option>
-                <option value="2">Por Estado de Pago</option>
-                <option value="3">por Cant&oacute;n</option>
+                <option value="dia">Por D&iacute;a</option>
+                <option value="pago">Por Estado de Pago</option>
+                <option value="canton">por Cant&oacute;n</option>
             </select>
         </div>
 
 
         <div class="form-group">
-            <label for="tipo-grafico">Tipo reporte</label>
+            <label for="tipo-grafico">Tipo gr&aacute;fico</label>
             <select class="form-control" name="tipó-grafico" ng-model="tipoGrafico" id="tipo-grafico">
-                <option value="1">Barras</option>
-                <option value="2">L&iacute;neas</option>
-                <option value="3">Pastel</option>
+                <option value="column2d">Columnas 2D</option>
+                <option value="column3d">Columnas 3D</option>
+                <option value="line">L&iacute;neas</option>
+                <option value="area2d">Area 2D</option>
+                <option value="bar2d">bar2d</option>
+                <option value="bar3d">bar3d</option>
+                <option value="pie2d">pie2d</option>
+                <option value="pie3d">pie3d</option>
+                <option value="doughnut2d">doughnut2d</option>
+                <option value="doughnut3d">doughnut3d</option>
+                <option value="pareto2d">pareto2d</option>
+                <option value="pareto3d">pareto3d</option>
+
             </select>
         </div>
 
-
+        {{tipoGrafico}}
     </div>
     <br/>
     <div class="table-responsive">
@@ -36,8 +46,8 @@
         <div fusioncharts
              width="600"
              height="400"
-             type="pie3d"
-             dataSource="{{myDataSource}}" >
+             type="{{tipoGrafico}}"
+             dataSource="{{myDataSource}}">
         </div>
     </div>
 

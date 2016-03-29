@@ -72,7 +72,4 @@ angular.module('denunciasApp')
                 }
             }
         };
-
-
-
     });
