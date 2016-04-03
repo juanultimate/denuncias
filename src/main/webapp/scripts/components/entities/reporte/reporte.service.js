@@ -2,7 +2,7 @@
 
 angular.module('denunciasApp')
     .factory('Reporte', function ($resource, DateUtils) {
-        return $resource('api/reportes/:tipo', {}, {
+        return $resource('api/reportes', {}, {
             'query': { method: 'GET', isArray: true},
             'get': {
                 method: 'GET',
