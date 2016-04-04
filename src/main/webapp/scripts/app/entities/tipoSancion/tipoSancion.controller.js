@@ -37,7 +37,6 @@ angular.module('denunciasApp')
                     break;
                 }
             }
-
         };
 
         $scope.loadAll($scope.tipoReporte);

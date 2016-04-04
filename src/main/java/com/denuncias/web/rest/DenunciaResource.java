@@ -70,6 +70,7 @@ public class DenunciaResource {
         denuncia.setCanton(canton);
         denuncia.setFecha(ZonedDateTime.now());
         denuncia.setEstado(Estado.Creada);
+        denuncia.setPagado(false);
         Denuncia result = denunciaRepository.save(denuncia);
         return ResponseEntity.created(new URI("/api/denuncias/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("denuncia", result.getId().toString()))
