@@ -5,6 +5,9 @@ import com.denuncias.domain.util.*;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.time.*;
+
+import com.fasterxml.jackson.datatype.jsr310.deser.JSR310DateTimeDeserializerBase;
+import com.fasterxml.jackson.datatype.jsr310.deser.JSR310StringParsableDeserializer;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +23,7 @@ public class JacksonConfiguration {
         module.addSerializer(LocalDateTime.class, JSR310DateTimeSerializer.INSTANCE);
         module.addSerializer(Instant.class, JSR310DateTimeSerializer.INSTANCE);
         module.addDeserializer(LocalDate.class, JSR310LocalDateDeserializer.INSTANCE);
+        module.addDeserializer(ZonedDateTime.class, JSR310StringParsableDeserializer<ZonedDateTime>.);
         return new Jackson2ObjectMapperBuilder()
                 .featuresToDisable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
                 .findModulesViaServiceLoader(true)
