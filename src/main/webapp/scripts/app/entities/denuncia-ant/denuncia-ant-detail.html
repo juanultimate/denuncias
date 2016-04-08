@@ -34,7 +34,7 @@
                                 <span>Fecha</span>
                             </td>
                             <td>
-                                <span class="form-control-static">{{denuncia.fecha}}</span>
+                                <span class="form-control-static">{{denuncia.fecha | date:'mediumDate'}}</span>
                             </td>
                         </tr>
 
@@ -50,16 +50,10 @@
 
                         <tr>
                             <td>
-                                <span></span>
+                                <span>V&aacute;lido</span>
                             </td>
                             <td>
-
-                                <label data-ng-repeat="choice in question.choices">
-                                    <input type="radio" name="response" data-ng-model="denuncia.sancionable" data-ng-value="choice.sancionable" disabled>
-                                    {{choice.text}}
-                                </label>
-
-
+                                <span>{{denuncia.pagado?'SI':'NO'}}</span>
                             </td>
                         </tr>
                         <tr>
@@ -67,6 +61,7 @@
                                 <span></span>
                             </td>
                             <td>
+
 
                                 <label data-ng-repeat="choice in pago.choices">
                                     <input type="radio" name="response" data-ng-model="denuncia.pagado" data-ng-value="choice.pagado"  />
