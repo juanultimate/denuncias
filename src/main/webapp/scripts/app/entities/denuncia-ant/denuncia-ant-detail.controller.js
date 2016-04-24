@@ -56,7 +56,7 @@ angular.module('denunciasApp')
             $scope.isSaving = false;
         };
 
-        $scope.descargar=function(){
+        $scope.descargarr=function(){
             console.log("dfasdasdf");
             html2canvas($(".mapa"), {
                 onrendered: function(canvas) {
@@ -67,6 +67,26 @@ angular.module('denunciasApp')
                 }
             });
         };
+
+
+        $scope.descargar = function ($event) {
+            html2canvas($(".container-fluid"), {
+                onrendered: function (canvas) {
+                    //theCanvas = canvas;
+                    document.body.appendChild(canvas);
+                    var img    = canvas.toDataURL();
+                    $event.target.href=img;
+                    $event.target.download="testing.png";
+                    //document.write('<img src="'+img+'"/>');
+
+                    //$("#img-out").append(canvas);
+                    // Clean up
+                    //document.body.removeChild(canvas);
+                }
+            });
+        };
+
+
 
 
 
