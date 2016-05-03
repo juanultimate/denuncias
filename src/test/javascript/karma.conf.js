@@ -30,6 +30,7 @@ module.exports = function (config) {
             'main/webapp/bower_components/html2canvas/build/html2canvas.js',
             'main/webapp/bower_components/FileSaver/FileSaver.js',
             'main/webapp/bower_components/ngmap/build/scripts/ng-map.js',
+            'main/webapp/bower_components/jszip/dist/jszip.js',
             'main/webapp/bower_components/angular-mocks/angular-mocks.js',
             // endbower
             'main/webapp/scripts/app/app.js',

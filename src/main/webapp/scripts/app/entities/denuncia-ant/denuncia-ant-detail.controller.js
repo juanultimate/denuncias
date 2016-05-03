@@ -17,9 +17,18 @@ angular.module('denunciasApp')
             $scope.pago.choices[1] = Object.create({}, { text: { value: "No Pagado"}, pagado : {value:false}});
         };
 
+        $scope.incializarBotonDescarga = function () {
+            html2canvas($(".container-fluid"), {
+                onrendered: function (canvas) {
+                    $scope.img    = canvas.toDataURL();
+                }
+            });
+        };
+
 
         $scope.loadSanciones();
         $scope.loadPagados();
+        $scope.incializarBotonDescarga();
 
         $scope.load = function (id) {
             Denuncia.get({id: id}, function(result) {
@@ -56,38 +65,42 @@ angular.module('denunciasApp')
             $scope.isSaving = false;
         };
 
-        $scope.descargarr=function(){
-            console.log("dfasdasdf");
-            html2canvas($(".mapa"), {
-                onrendered: function(canvas) {
-                    document.body.appendChild(canvas);
-                    canvas.toBlob(function(blob) {
-                        saveAs(blob, "Dashboard.png");
-                    });
-                }
-            });
-        };
 
 
-        $scope.descargar = function ($event) {
+        $scope.zip= function() {
+            var zip = new JSZip();
             html2canvas($(".container-fluid"), {
                 onrendered: function (canvas) {
-                    //theCanvas = canvas;
-                    document.body.appendChild(canvas);
-                    var img    = canvas.toDataURL();
-                    $event.target.href=img;
-                    $event.target.download="testing.png";
-                    //document.write('<img src="'+img+'"/>');
+                    var image = new Image();
+                    image.src = canvas.toDataURL("image/png");
+                    zip.file("general.png", image.src.substr(image.src.indexOf(',')+1), {base64: true});
 
-                    //$("#img-out").append(canvas);
-                    // Clean up
-                    //document.body.removeChild(canvas);
+                    html2canvas($(".foto"), {
+                        onrendered: function (canvas) {
+                            var image = new Image();
+                            image.src = canvas.toDataURL("image/png");
+                            zip.file("alerta.png", image.src.substr(image.src.indexOf(',') + 1), {base64: true});
+
+
+                            html2canvas($(".mapa"), {
+                                onrendered: function (canvas) {
+                                    var image = new Image();
+                                    image.src = canvas.toDataURL("image/png");
+                                    zip.file("mapa.png", image.src.substr(image.src.indexOf(',')+1), {base64: true});
+                                    zip.generateAsync({type: "blob"})
+                                        .then(function (content) {
+                                            saveAs(content, $scope.denuncia.codigo + ".zip");
+                                        });
+
+                                }
+                            });
+
+
+                        }
+                    });
+
+
                 }
             });
-        };
-
-
-
-
-
+        }
     });

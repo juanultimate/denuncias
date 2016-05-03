@@ -5,7 +5,7 @@
         <div class="container-fluid">
 
             <div class="row">
-                <div class="col-xs-6 col-sm-3">
+                <div class="col-xs-6 col-sm-3 foto">
                     <img data-ng-src="{{'data:' + denuncia.fotoContentType + ';base64,' + denuncia.foto}}"
                          style="max-width: 100%;" ng-if="denuncia.foto"/>
                 </div>
@@ -94,7 +94,7 @@
 
 
                         <td>
-                            <div id="mapa" class=".mapa" map-denuncia="" x="{{denuncia.longitud}}" y="{{denuncia.latitud}}"
+                            <div id="mapa" class="mapa" map-denuncia="" x="{{denuncia.longitud}}" y="{{denuncia.latitud}}"
                                  desc="{{denuncia.codigo}}"></div>
                         </td>
                     </tr>
@@ -105,7 +105,9 @@
                 </div>
             </div>
 
-            <a id="download" ng-click="descargar($event)">Download as image</a>
+
+            <button ng-click="zip()" class="btn-link">Descargar</button>
+
             <div id="img-out"/>
         </div>
 
