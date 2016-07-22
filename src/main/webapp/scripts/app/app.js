@@ -3,7 +3,7 @@
 angular.module('denunciasApp', ['LocalStorageModule',
     'ngResource', 'ngCookies', 'ngAria', 'ngCacheBuster', 'ngFileUpload',
     // jhipster-needle-angularjs-add-module JHipster will add new module here
-    'ui.bootstrap', 'ui.router',  'infinite-scroll', 'angular-loading-bar','ng-fusioncharts' ])
+    'ui.bootstrap', 'ui.router',  'infinite-scroll', 'angular-loading-bar','ng-fusioncharts','uiGmapgoogle-maps' ])
 
     .run(function ($rootScope, $location, $window, $http, $state,  Auth, Principal, ENV, VERSION) {
 

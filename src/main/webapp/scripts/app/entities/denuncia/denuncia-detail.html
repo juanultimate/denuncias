@@ -93,6 +93,13 @@
                                  desc="{{denuncia.codigo}}"></div>
                         </td>
                     </tr>
+
+                    Este es el nuevo mapa
+                    <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+                        <ui-gmap-marker coords="map.marker" options="map.marker.options" events="map.marker.events" idkey="marker.id">
+                        </ui-gmap-marker>
+                    </ui-gmap-google-map>
+
                 </div>
             </div>
         </div>
@@ -114,4 +121,6 @@
 
     </div>
     <ng-map center="[40.74, -74.18]"></ng-map>
+
+
 </form>
