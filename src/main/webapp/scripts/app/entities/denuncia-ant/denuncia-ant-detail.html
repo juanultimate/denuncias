@@ -34,7 +34,7 @@
                                 <span>Fecha</span>
                             </td>
                             <td>
-                                <span class="form-control-static">{{denuncia.fecha | date:'mediumDate'}}</span>
+                                <span class="form-control-static">{{denuncia.fecha | date:'longDate'}}</span>
                             </td>
                         </tr>
 
@@ -94,8 +94,12 @@
 
 
                         <td>
-                            <div id="mapa" class="mapa" map-denuncia="" x="{{denuncia.longitud}}" y="{{denuncia.latitud}}"
-                                 desc="{{denuncia.codigo}}"></div>
+                            <div class="mapa">
+                            <ui-gmap-google-map center='coords.center' zoom='map.zoom' ng-if="coords.center" >
+                                <ui-gmap-marker idKey="map.marker.id" coords="coords.center" options="map.marker.options">
+                                </ui-gmap-marker>
+                            </ui-gmap-google-map>
+                            </div>
                         </td>
                     </tr>
 
@@ -120,9 +124,9 @@
                 <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Regresar</span>
             </button>
 
-            <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <!--button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
                 <span class="glyphicon glyphicon-send"></span>&nbsp;<span> Enviar</span>
-            </button>
+            </button-->
         </div>
 
 
