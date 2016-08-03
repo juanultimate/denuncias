@@ -130,24 +130,11 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = props.getCors();
-        config.setAllowedOrigins(Arrays.asList("*"));
-        config.setAllowedHeaders(Arrays.asList("*"));
-        config.setAllowedMethods(Arrays.asList("*"));
-
         if (config.getAllowedOrigins() != null && !config.getAllowedOrigins().isEmpty()) {
             source.registerCorsConfiguration("/api/**", config);
             source.registerCorsConfiguration("/v2/api-docs", config);
             source.registerCorsConfiguration("/oauth/**", config);
-            source.registerCorsConfiguration("/api/authenticate/**", config);
-
-
-
         }
-        //CorsConfiguration configAuth = props.getCors();
-        //configAuth.setAllowedOrigins(Arrays.asList("*"));
-        //source.registerCorsConfiguration("/api/authentication/", configAuth);
         return new CorsFilter(source);
     }
-
-
 }
