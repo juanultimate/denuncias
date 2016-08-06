@@ -10,31 +10,21 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
 /**
  * Created by rene on 25/02/16.
  */
-@Component
-public class CorsFilter implements Filter {
+@Configuration
+@EnableWebMvc
+public class CorsFilter extends WebMvcConfigurerAdapter {
 
-    public void doFilter(ServletRequest req, ServletResponse res,
-                         FilterChain chain) throws IOException, ServletException {
-        HttpServletResponse response = (HttpServletResponse) res;
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Methods",
-            "POST, GET, PUT, OPTIONS, DELETE");
-        response.setHeader("Access-Control-Max-Age", "3600");
-        response.setHeader("Access-Control-Allow-Headers",
-            "Origin, X-Requested-With, Content-Type, Accept");
-        chain.doFilter(req, res);
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**");
     }
-
-    public void init(FilterConfig filterConfig) {
-        System.out.println("init-----------------------------------------------------------------------");
-    }
-
-    public void destroy() {
-        System.out.println("destroy-----------------------------------------------------------------------");
-    }
-
 }
