@@ -21,10 +21,10 @@ public class AjaxAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
         throws IOException, ServletException {
         response.setHeader("Access-Control-Allow-Origin", "*");
         System.out.println("REQUEST");
-        while(request.getHeaderNames().hasMoreElements()){
-            String value= request.getHeaderNames().nextElement();
-            System.out.println(request.getHeader(value));
-        }
+//        while(request.getHeaderNames().hasMoreElements()){
+//            String value= request.getHeaderNames().nextElement();
+//            System.out.println(request.getHeader(value));
+//        }
         System.out.println("COOKIES");
         System.out.println(request.getCookies());
 
