@@ -7,7 +7,7 @@ angular.module('denunciasApp')
                 parent: 'entity',
                 url: '/cantons',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN'],
                     pageTitle: 'Cantons'
                 },
                 views: {
@@ -23,7 +23,7 @@ angular.module('denunciasApp')
                 parent: 'entity',
                 url: '/canton/{id}',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN'],
                     pageTitle: 'Canton'
                 },
                 views: {
@@ -42,7 +42,7 @@ angular.module('denunciasApp')
                 parent: 'canton',
                 url: '/new',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN'],
                 },
                 onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                     $uibModal.open({
@@ -69,7 +69,7 @@ angular.module('denunciasApp')
                 parent: 'canton',
                 url: '/{id}/edit',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN'],
                 },
                 onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                     $uibModal.open({
@@ -92,7 +92,7 @@ angular.module('denunciasApp')
                 parent: 'canton',
                 url: '/{id}/delete',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN'],
                 },
                 onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                     $uibModal.open({

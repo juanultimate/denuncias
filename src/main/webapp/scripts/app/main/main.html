@@ -6,14 +6,14 @@
         <div class="col-md-8">
             <div ng-switch="isAuthenticated()">
                 <div class="alert alert-success" ng-switch-when="true">
-                    You are logged in as user "{{account.login}}".
+                    Has ingresado como usuario "{{account.login}}".
                 </div>
                 <div class="alert alert-warning" ng-switch-when="false">
-                    If you want to <a class="alert-link" href="#/login">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").
+                    Si quieres <a class="alert-link" href="#/login">ingresar</a>, puedes intentar con las siguientes cuentas:<br/>- Administrador (Usuario="admin" y  clave="admin") <br/>- Usuario (Uduario="user" y clave="user"). <br/>- Usuario ANT (Uduario="ant" y clave="user").
                 </div>
 
                 <div class="alert alert-warning" ng-switch-when="false">
-                    You don't have an account yet? <a class="alert-link" href="#/register">Register a new account</a>
+                    Aún no tienes una cuenta? <a class="alert-link" href="#/register">Registra una nueva cuenta.</a>
                 </div>
             </div>
         </div>

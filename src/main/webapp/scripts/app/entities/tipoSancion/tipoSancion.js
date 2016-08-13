@@ -7,7 +7,7 @@ angular.module('denunciasApp')
                 parent: 'entity',
                 url: '/tipoSancions',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN'],
                     pageTitle: 'TipoSancions'
                 },
                 views: {
