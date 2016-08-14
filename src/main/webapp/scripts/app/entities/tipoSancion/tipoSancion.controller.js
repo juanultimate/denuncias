@@ -23,9 +23,9 @@ angular.module('denunciasApp')
                     $scope.myDataSource.chart.subCaption="Alertas por día"
                     break;
                 }
-                case 'canton':{
+                case 'mes':{
                     $scope.myDataSource.chart.caption=""
-                    $scope.myDataSource.chart.subCaption="Alertas por cantón"
+                    $scope.myDataSource.chart.subCaption="Alertas por Mes"
                     break;
                 }
                 case 'pago':{

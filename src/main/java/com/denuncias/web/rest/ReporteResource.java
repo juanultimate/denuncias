@@ -36,6 +36,7 @@ import static org.springframework.data.mongodb.core.query.Query.query;
 
 import javax.inject.Inject;
 import java.net.URISyntaxException;
+import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -98,12 +99,19 @@ public class ReporteResource {
                 data.add(new ReportData("No pagado", countNoPagado));
                 break;
             }
-            case "canton":{
-                for (Canton canton:cantonRepository.findAll()) {
-                    Long count = denunciaRepository.countByCanton(canton);
-                    data.add(new ReportData(canton.getNombre(), count));
+            case "mes":{
+                DBObject groupFields = new BasicDBObject( "_id", new BasicDBObject("$month", "$fecha"));
+                groupFields.put("value", new BasicDBObject( "$sum", 1));
+                DBObject group = new BasicDBObject("$group", groupFields);
+                List pipeline = Arrays.asList(group);
+                DBCollection collection = mongoTemplate.getCollection("denuncia");
+                AggregationOutput output = collection.aggregate(pipeline);
+
+
+
+                for (DBObject item :output.results()) {
+                    data.add(new ReportData(new DateFormatSymbols().getMonths()[(Integer.valueOf(item.get("_id").toString())-1)],Long.valueOf(item.get("value").toString())));
                 }
-                break;
             }
             default:{
                 break;
