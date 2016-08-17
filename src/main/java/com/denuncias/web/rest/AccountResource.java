@@ -106,6 +106,7 @@ public class AccountResource {
     /**
      * GET  /account -> get the current user.
      */
+    @CrossOrigin
     @RequestMapping(value = "/account",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)

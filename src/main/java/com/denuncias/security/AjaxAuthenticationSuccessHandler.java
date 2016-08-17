@@ -19,7 +19,7 @@ public class AjaxAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuc
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
         Authentication authentication)
         throws IOException, ServletException {
-        response.setHeader("Access-Control-Allow-Origin", "*");
+        //response.setHeader("Access-Control-Allow-Origin", "*");
         System.out.println("REQUEST");
 //        while(request.getHeaderNames().hasMoreElements()){
 //            String value= request.getHeaderNames().nextElement();

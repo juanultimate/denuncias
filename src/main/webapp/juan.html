@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Juan</title>
+	<script   src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"></script>
+</head>
+<body>
+<style type="text/css">
+	body{
+    font-family: 'Open Sans', 'Helvetica Neue', 'Arial', sans-serif;
+    font-size: 13px;       
+}
+
+</style>
+<form method="post" action="http://localhost:8080/api/authentication" ajax="true">
+ 
+   
+    <span>        
+        <label>User: </label>
+        <input type="text" name="j_username" value="admin" />
+    </span>
+    <span>        
+        <label>Pass: </label>
+        <input type="text" name="j_password" value="admin" />
+    </span>
+    
+      <span>        
+        <label>Pass: </label>
+        <input type="text" name="submit" value="Login" />
+    </span>
+    
+     <span>        
+        <label>Remember: </label>
+        <input type="text" name="remember-me" value="true" />
+    </span>
+    
+    <span>
+        <label><img id="loadingimg" src="http://dev.cloudcell.co.uk/bin/loading.gif"/>   </label>
+        <input type="submit" value="Login" />      
+    </span>
+ 
+    
+</form>
+ <button id="user">User</button>
+  <button id="logout">Logout</button>
+<div id="resultado">
+
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(e) {    
+    $("form[ajax=true]").submit(function(e) {        
+        e.preventDefault();        
+        var form_data = $(this).serialize();
+        var form_url = $(this).attr("action");
+        var form_method = $(this).attr("method").toUpperCase();        
+        
+        $("#loadingimg").show();        
+        $.ajax({
+            url: form_url, 
+            type: form_method,      
+            data: form_data,     
+            cache: false,            
+             complete: function(resp){             
+    				},
+            success: function(output, status, xhr){
+            	console.log("login");
+               $("#loadingimg").hide();        
+            }          
+        });
+    });  
+    
+    
+     $('#user').click(function(){
+    		$.ajax("http://localhost:8080/api/account", {
+         method: 'GET',
+         xhrFields: { withCredentials: true },
+         crossDomain: true,
+          beforeSend: function(xhr){
+          
+          	//xhr.setRequestHeader('Accept', 'application/json, text/plain, */*');
+            xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+          },
+         success: function(output, status, xhr){
+            		console.log("SUCESS");
+                console.log(output);
+                },
+         error: function(output, status, xhr){
+            		console.log("ERROR");
+         }
+  		});
+    });
+    
+    
+    
+    $('#logout').click(function(){
+    		$.ajax("http://localhost:8080/api/logout", {
+           method: 'POST',
+           //xhrFields: { withCredentials: true },
+           crossDomain: true,
+           success: function(output, status, xhr){
+           console.log("logout");          
+         },
+         error: function(output, status, xhr){
+            		console.log("ERROR");
+         }
+  		});
+    });
+    
+    
+    
+    
+    
+   
+});
+</script>
+
+
+
+</body>
+</html>
