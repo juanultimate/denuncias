@@ -1,25 +1,13 @@
 <div>
     <h2>Alertas</h2>
     <jh-alert></jh-alert>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="denuncia.new" >
-                    <span class="glyphicon glyphicon-plus"></span>
-                    <span
-                       >Crear nueva alerta
-                    </span>
-                </button>
-            </div>
-        </div>
-    </div>
     <br/>
     <div class="table-responsive">
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="predicate" ascending="reverse" callback="loadAll()">
 
-                    <th jh-sort-by="codigo"><span>Codigo</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="codigo"><span>Código</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="fecha"><span>Fecha</span> <span class="glyphicon glyphicon-sort"></span></th>
 
                     <th jh-sort-by="latitud"><span>Latitud</span> <span class="glyphicon glyphicon-sort"></span></th>
