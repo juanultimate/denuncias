@@ -3,13 +3,13 @@
 angular.module('denunciasApp')
     .controller('TipoSancionController', function ($scope, $state, Reporte, ParseLinks) {
         $scope.tipoReporte='dia';
-        $scope.tipoGrafico='column3d';
+        $scope.tipoGrafico='pie2d';
         $scope.myDataSource = {
             chart: {
                 caption: "",
                 subCaption: "",
                 numberPrefix: "",
-                theme: ""
+                theme: "zune"
             },
             data:[]
         };

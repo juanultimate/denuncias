@@ -106,14 +106,10 @@ public class ReporteResource {
                 List pipeline = Arrays.asList(group);
                 DBCollection collection = mongoTemplate.getCollection("denuncia");
                 AggregationOutput output = collection.aggregate(pipeline);
-
-
-
                 for (DBObject item :output.results()) {
                     data.add(new ReportData(new DateFormatSymbols().getMonths()[(Integer.valueOf(item.get("_id").toString())-1)],Long.valueOf(item.get("value").toString())));
                 }
                 break;
-
             }
 
             case "anio":{
@@ -123,20 +119,11 @@ public class ReporteResource {
                 List pipeline = Arrays.asList(group);
                 DBCollection collection = mongoTemplate.getCollection("denuncia");
                 AggregationOutput output = collection.aggregate(pipeline);
-
-
-
                 for (DBObject item :output.results()) {
                     data.add(new ReportData(item.get("_id").toString(),Long.valueOf(item.get("value").toString())));
                 }
                 break;
-
             }
-
-
-
-
-
             default:{
                 break;
             }

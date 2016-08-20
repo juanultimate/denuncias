@@ -5,7 +5,8 @@
 
         <div class="form-group">
             <label for="tipo-reporte">Tipo reporte</label>
-            <select class="form-control" name="tipo-reporte" ng-model="tipoReporte" id="tipo-reporte" ng-change="updateReport(tipoReporte)">
+            <select class="form-control" name="tipo-reporte" ng-model="tipoReporte" id="tipo-reporte"
+                    ng-change="updateReport(tipoReporte)">
                 <option value="dia">Por D&iacute;a</option>
                 <option value="pago">Por Estado de Pago</option>
                 <option value="mes">Por Mes</option>
@@ -36,21 +37,30 @@
 
     </div>
     <br/>
-    <div class="table-responsive">
-
-
-
-
-    </div>
-
-    <div >
-        <div fusioncharts
-             width="600"
-             height="400"
-             type="{{tipoGrafico}}"
-             dataSource="{{myDataSource}}">
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table table-hover table-bordered table-striped ">
+                <thead class="bg-primary">
+                <th class="sucess" colspan="2"><p class="text-capitalize text-center">
+                    {{myDataSource.chart.subCaption}}</p>
+                </th>
+                </thead>
+                <tbody>
+                <tr data-ng-repeat="data in myDataSource.data">
+                    <td>{{data.label}}</td>
+                    <td>{{data.value}}</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
+        <div class="col-md-6">
+            <div fusioncharts  theme="zune"
+                 width="550"
+                 height="400"
+                 type="{{tipoGrafico}}"
+                 dataSource="{{myDataSource}}">
+            </div>
+        </div>
+
     </div>
-
-
 </div>
