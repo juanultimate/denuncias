@@ -45,6 +45,22 @@ public class DenunciaResource {
     @Inject
     CantonRepository cantonRepository;
 
+
+
+    @RequestMapping(method = RequestMethod.POST, value = "/upload")
+    public @ResponseBody ResponseEntity<Denuncia> handleFileUpload(@RequestParam("lat") String lat,
+                             @RequestParam("lon") String lon,
+                             @RequestParam("placa") String placa,
+                             @RequestParam("key") MultipartFile file) {
+        Denuncia denuncias = new Denuncia();
+        denuncia.setLatitud(lat);
+        denuncia.setLongitud(lon);
+        denuncia.setPlaca(placa);
+        denuncia.setFoto(file.getBytes());
+        denuncia.setFotoContentType("image/jpeg");
+        return this.createDenuncia(denuncia);
+    }
+
     /**
      * POST  /denuncias -> Create a new denuncia.
      */
