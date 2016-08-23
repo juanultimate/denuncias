@@ -18,15 +18,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.inject.Inject;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,14 +49,19 @@ public class DenunciaResource {
     public @ResponseBody ResponseEntity<Denuncia> handleFileUpload(@RequestParam("lat") String lat,
                              @RequestParam("lon") String lon,
                              @RequestParam("placa") String placa,
-                             @RequestParam("key") MultipartFile file) {
-        Denuncia denuncias = new Denuncia();
-        denuncia.setLatitud(lat);
-        denuncia.setLongitud(lon);
-        denuncia.setPlaca(placa);
-        denuncia.setFoto(file.getBytes());
-        denuncia.setFotoContentType("image/jpeg");
-        return this.createDenuncia(denuncia);
+                             @RequestParam("key") MultipartFile file)  {
+        try {
+            Denuncia denuncia = new Denuncia();
+            denuncia.setLatitud(lat);
+            denuncia.setLongitud(lon);
+            denuncia.setPlaca(placa);
+            denuncia.setFoto(file.getBytes());
+            denuncia.setFotoContentType("image/jpeg");
+            return this.createDenuncia(denuncia);
+        }catch (Exception e){
+            log.error("Error creando denuncia", e);
+            return new ResponseEntity<Denuncia>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     /**
