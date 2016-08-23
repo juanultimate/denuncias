@@ -71,7 +71,7 @@ Browser Upgrade Prompt
     display: inline-block;
     width: 347px;
     height: 497px;
-    background: url("../images/hipster.png") no-repeat center top;
+    background: url("../images/logo.jpg") no-repeat center top;
     background-size: contain;
 }
 
@@ -233,3 +233,11 @@ ul#strengthBar {
 /* jhipster-needle-scss-add-main JHipster will add new css style */
 
 /* jhipster-needle-css-add-main JHipster will add new css style */
+
+.angular-google-map-container { width: 350px;
+    height: 350px; }
+
+
+
+
+

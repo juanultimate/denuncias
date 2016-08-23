@@ -1,14 +1,14 @@
 'use strict';
 
 angular.module('denunciasApp')
-    .controller('DenunciaController', function ($scope, $state, Denuncia, ParseLinks) {
+    .controller('DenunciaController', function ($scope, $state, DataUtils, Denuncia, ParseLinks) {
 
         $scope.denuncias = [];
         $scope.predicate = 'id';
         $scope.reverse = true;
         $scope.page = 1;
         $scope.loadAll = function() {
-            Denuncia.query({page: $scope.page - 1, size: 20, sort: [$scope.predicate + ',' + ($scope.reverse ? 'asc' : 'desc'), 'id']}, function(result, headers) {
+            Denuncia.query({page: $scope.page - 1, size: 20, sort: [$scope.predicate + ',' + ($scope.reverse ? 'asc' : 'desc'), 'id'], estado:'Creada'}, function(result, headers) {
                 $scope.links = ParseLinks.parse(headers('link'));
                 $scope.totalItems = headers('X-Total-Count');
                 $scope.denuncias = result;
@@ -29,14 +29,19 @@ angular.module('denunciasApp')
         $scope.clear = function () {
             $scope.denuncia = {
                 codigo: null,
-                canton: null,
                 fecha: null,
-                sancion: null,
-                estado: null,
-                distrito: null,
-                tipoSancion: null,
+                sancionable: null,
+                latitud: null,
+                longitud: null,
                 placa: null,
+                estado: null,
+                foto: null,
+                fotoContentType: null,
                 id: null
             };
         };
+
+        $scope.abbreviate = DataUtils.abbreviate;
+
+        $scope.byteSize = DataUtils.byteSize;
     });

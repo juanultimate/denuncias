@@ -8,39 +8,51 @@
         },
         {
             "fieldId": 2,
-            "fieldName": "canton",
-            "fieldType": "String"
-        },
-        {
-            "fieldId": 3,
             "fieldName": "fecha",
             "fieldType": "LocalDate"
         },
         {
-            "fieldId": 4,
-            "fieldName": "sancion",
+            "fieldId": 3,
+            "fieldName": "sancionable",
             "fieldType": "Boolean"
         },
         {
+            "fieldId": 4,
+            "fieldName": "latitud",
+            "fieldType": "String"
+        },
+        {
             "fieldId": 5,
-            "fieldName": "estado",
-            "fieldType": "Com.denuncias.domain.Estado",
-            "fieldValues": "CREADA, ENVIADA, PROCESO, REGISTRADA, ASIGNADA"
+            "fieldName": "longitud",
+            "fieldType": "String"
         },
         {
             "fieldId": 6,
-            "fieldName": "distrito",
+            "fieldName": "placa",
             "fieldType": "String"
         },
         {
             "fieldId": 7,
-            "fieldName": "tipoSancion",
-            "fieldType": "String"
+            "fieldName": "estado",
+            "fieldType": "Estado",
+            "fieldValues": "Creada,Enviada,Notificada"
         },
         {
             "fieldId": 8,
-            "fieldName": "placa",
+            "fieldName": "foto",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+
+        {
+            "fieldId": 9,
+            "fieldName": "direccion",
             "fieldType": "String"
+        },
+        {
+            "fieldId": 10,
+            "fieldName": "pagado",
+            "fieldType": "Boolean"
         }
     ],
     "dto": "no",

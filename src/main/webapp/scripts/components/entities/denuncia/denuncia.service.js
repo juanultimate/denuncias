@@ -8,7 +8,7 @@ angular.module('denunciasApp')
                 method: 'GET',
                 transformResponse: function (data) {
                     data = angular.fromJson(data);
-                    data.fecha = DateUtils.convertLocaleDateFromServer(data.fecha);
+                    data.fecha = DateUtils.convertDateTimeFromServer(data.fecha);
                     return data;
                 }
             },

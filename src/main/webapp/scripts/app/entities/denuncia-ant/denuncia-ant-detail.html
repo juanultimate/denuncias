@@ -1,0 +1,123 @@
+<form name="editForm" role="form" ng-submit="save()" novalidate>
+    <div>
+        <h2><span>Alerta:</span> {{denuncia.codigo}}</h2>
+
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-xs-6 col-sm-3 foto">
+                    <img data-ng-src="{{'data:' + denuncia.fotoContentType + ';base64,' + denuncia.foto}}"
+                         style="max-width: 100%;" ng-if="denuncia.foto"/>
+                </div>
+                <div class="col-xs-6 col-sm-5">
+                    <table class="table table-striped">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <span>Codigo</span>
+                            </td>
+                            <td>
+                                <span class="form-control-static">{{denuncia.codigo}}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>Cant&oacute;n</span>
+                            </td>
+                            <td>
+                                <span class="form-control-static">{{denuncia.canton.nombre}}</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <span>Fecha</span>
+                            </td>
+                            <td>
+                                <span class="form-control-static">{{denuncia.fecha | date:'longDate'}}</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <span>Hora</span>
+                            </td>
+                            <td>
+                                <span class="form-control-static">{{denuncia.fecha | date:'shortTime'}}</span>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                <span>V&aacute;lido</span>
+                            </td>
+                            <td>
+                                <span>{{denuncia.pagado?'SI':'NO'}}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span></span>
+                            </td>
+                            <td>
+
+
+                                <label data-ng-repeat="choice in pago.choices">
+                                    <input type="radio" name="response" data-ng-model="denuncia.pagado" data-ng-value="choice.pagado"  />
+                                    {{choice.text}}
+                                </label>
+
+
+                            </td>
+                        </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Add the extra clearfix for only the required viewport -->
+
+                <div class="col-xs-6 col-sm-3">
+                    <tr>
+                        <td>
+                            <span>Coordenadas X:{{denuncia.latitud}} / Y: {{denuncia.longitud}}</span>
+                        </td>
+
+
+
+                        <td>
+                            <span>Dirección:{{denuncia.direccion}} </span>
+                        </td>
+
+
+
+                        <td>
+                            <div class="mapa">
+                            <ui-gmap-google-map center='coords.center' zoom='map.zoom' ng-if="coords.center" >
+                                <ui-gmap-marker idKey="map.marker.id" coords="coords.center" options="map.marker.options">
+                                </ui-gmap-marker>
+                            </ui-gmap-google-map>
+                            </div>
+                        </td>
+                    </tr>
+                </div>
+            </div>
+            <button ng-click="zip()" class="btn-link">Descargar</button>
+            <div id="img-out"/>
+        </div>
+        <div class="modal-footer">
+            <button type="button"
+                    onclick="window.history.back()"
+                    class="btn btn-info">
+                <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Regresar</span>
+            </button>
+            <!--button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+                <span class="glyphicon glyphicon-send"></span>&nbsp;<span> Enviar</span>
+            </button-->
+        </div>
+
+
+    </div>
+</form>

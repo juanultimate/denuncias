@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('denunciasApp').controller('DenunciaDialogController',
-    ['$scope', '$stateParams', '$uibModalInstance', 'entity', 'Denuncia',
-        function($scope, $stateParams, $uibModalInstance, entity, Denuncia) {
+    ['$scope', '$stateParams', '$uibModalInstance', 'DataUtils', 'entity', 'Denuncia',
+        function($scope, $stateParams, $uibModalInstance, DataUtils, entity, Denuncia) {
 
         $scope.denuncia = entity;
         $scope.load = function(id) {
@@ -33,6 +33,10 @@ angular.module('denunciasApp').controller('DenunciaDialogController',
         $scope.clear = function() {
             $uibModalInstance.dismiss('cancel');
         };
+
+        $scope.abbreviate = DataUtils.abbreviate;
+
+        $scope.byteSize = DataUtils.byteSize;
         $scope.datePickerForFecha = {};
 
         $scope.datePickerForFecha.status = {
@@ -41,5 +45,22 @@ angular.module('denunciasApp').controller('DenunciaDialogController',
 
         $scope.datePickerForFechaOpen = function($event) {
             $scope.datePickerForFecha.status.opened = true;
+        };
+
+        $scope.setFoto = function ($file, denuncia) {
+            if ($file && $file.$error == 'pattern') {
+                return;
+            }
+            if ($file) {
+                var fileReader = new FileReader();
+                fileReader.readAsDataURL($file);
+                fileReader.onload = function (e) {
+                    var base64Data = e.target.result.substr(e.target.result.indexOf('base64,') + 'base64,'.length);
+                    $scope.$apply(function() {
+                        denuncia.foto = base64Data;
+                        denuncia.fotoContentType = $file.type;
+                    });
+                };
+            }
         };
 }]);

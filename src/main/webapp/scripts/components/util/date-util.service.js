@@ -5,7 +5,7 @@ angular.module('denunciasApp')
 
     this.convertLocaleDateToServer = function(date) {
         if (date) {
-            return $filter('date')(date, 'yyyy-MM-dd');
+            return $filter('date')(date, "yyyy-MM-ddTHH:mm:ss'Z'");
         } else {
             return null;
         }

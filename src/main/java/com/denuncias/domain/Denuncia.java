@@ -1,14 +1,24 @@
 package com.denuncias.domain;
 
 import java.time.LocalDate;
+
+import com.denuncias.domain.util.JSR310DateTimeSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Objects;
 
 import com.denuncias.domain.enumeration.Estado;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * A Denuncia.
@@ -23,26 +33,42 @@ public class Denuncia implements Serializable {
     @Field("codigo")
     private String codigo;
 
-    @Field("canton")
-    private String canton;
-
     @Field("fecha")
-    private LocalDate fecha;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    //2011-12-03T10:15:30+01:00
+    private ZonedDateTime fecha;
 
-    @Field("sancion")
-    private Boolean sancion;
+    @Field("sancionable")
+    private Boolean sancionable;
+
+    @Field("latitud")
+    private String latitud;
+
+    @Field("longitud")
+    private String longitud;
+
+    @Field("placa")
+    private String placa;
 
     @Field("estado")
     private Estado estado;
 
-    @Field("distrito")
-    private String distrito;
+    @Field("foto")
+    private byte[] foto;
 
-    @Field("tipo_sancion")
-    private String tipoSancion;
+    @Field("foto_content_type")
+    private String fotoContentType;
 
-    @Field("placa")
-    private String placa;
+    @Field("direccion")
+    private String direccion;
+
+    @Field("pagado")
+    private Boolean pagado;
+
+
+
+    @DBRef
+    private Canton canton;
 
     public String getId() {
         return id;
@@ -60,28 +86,44 @@ public class Denuncia implements Serializable {
         this.codigo = codigo;
     }
 
-    public String getCanton() {
-        return canton;
-    }
-
-    public void setCanton(String canton) {
-        this.canton = canton;
-    }
-
-    public LocalDate getFecha() {
+    public ZonedDateTime getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(ZonedDateTime fecha) {
         this.fecha = fecha;
     }
 
-    public Boolean getSancion() {
-        return sancion;
+    public Boolean getSancionable() {
+        return sancionable;
     }
 
-    public void setSancion(Boolean sancion) {
-        this.sancion = sancion;
+    public void setSancionable(Boolean sancionable) {
+        this.sancionable = sancionable;
+    }
+
+    public String getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(String latitud) {
+        this.latitud = latitud;
+    }
+
+    public String getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(String longitud) {
+        this.longitud = longitud;
+    }
+
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
     }
 
     public Estado getEstado() {
@@ -92,29 +134,46 @@ public class Denuncia implements Serializable {
         this.estado = estado;
     }
 
-    public String getDistrito() {
-        return distrito;
+    public byte[] getFoto() {
+        return foto;
     }
 
-    public void setDistrito(String distrito) {
-        this.distrito = distrito;
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
     }
 
-    public String getTipoSancion() {
-        return tipoSancion;
+    public String getFotoContentType() {
+        return fotoContentType;
     }
 
-    public void setTipoSancion(String tipoSancion) {
-        this.tipoSancion = tipoSancion;
+    public void setFotoContentType(String fotoContentType) {
+        this.fotoContentType = fotoContentType;
     }
 
-    public String getPlaca() {
-        return placa;
+    public Canton getCanton() {
+        return canton;
     }
 
-    public void setPlaca(String placa) {
-        this.placa = placa;
+    public void setCanton(Canton canton) {
+        this.canton = canton;
     }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public Boolean getPagado() {
+        return pagado;
+    }
+
+    public void setPagado(Boolean pagado) {
+        this.pagado = pagado;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -141,13 +200,20 @@ public class Denuncia implements Serializable {
         return "Denuncia{" +
             "id=" + id +
             ", codigo='" + codigo + "'" +
-            ", canton='" + canton + "'" +
             ", fecha='" + fecha + "'" +
-            ", sancion='" + sancion + "'" +
-            ", estado='" + estado + "'" +
-            ", distrito='" + distrito + "'" +
-            ", tipoSancion='" + tipoSancion + "'" +
+            ", sancionable='" + sancionable + "'" +
+            ", latitud='" + latitud + "'" +
+            ", longitud='" + longitud + "'" +
             ", placa='" + placa + "'" +
+            ", estado='" + estado + "'" +
+            ", foto='" + foto + "'" +
+            ", fotoContentType='" + fotoContentType + "'" +
+            //", canton='"+canton.toString()+
+            ", direccion='" + direccion + "'" +
+            ", pagado='" + pagado + "'" +
             '}';
     }
+
+
+
 }

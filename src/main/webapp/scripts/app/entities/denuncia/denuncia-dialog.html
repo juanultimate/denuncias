@@ -20,45 +20,31 @@
                      />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_canton">Canton</label>
-            <input type="text" class="form-control" name="canton" id="field_canton"
-                    ng-model="denuncia.canton"
-                     />
-        </div>
-        <div class="form-group">
             <label class="control-label" for="field_fecha">Fecha</label>
-            <input id="field_fecha" type="text" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="denuncia.fecha" is-open="datePickerForFecha.status.opened"
-            />
-            <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="datePickerForFechaOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-            </span>
+                <div class="input-group">
+                    <input id="field_fecha" type="text" class="form-control" uib-datepicker-popup="{{dateformat}}" ng-model="denuncia.fecha" is-open="datePickerForFecha.status.opened"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="datePickerForFechaOpen($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_sancion">Sancion</label>
-            <input type="checkbox" class="form-control" name="sancion" id="field_sancion"
-                    ng-model="denuncia.sancion"
+            <label class="control-label" for="field_sancionable">Sancionable</label>
+            <input type="checkbox" class="form-control" name="sancionable" id="field_sancionable"
+                    ng-model="denuncia.sancionable"
                      />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_estado">Estado</label>
-            <select class="form-control" name="estado" ng-model="denuncia.estado" id="field_estado">
-                <option value="CREADA">CREADA</option>
-                <option value="ENVIADA">ENVIADA</option>
-                <option value="PROCESO">PROCESO</option>
-                <option value="REGISTRADA">REGISTRADA</option>
-                <option value="ASIGNADA">ASIGNADA</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="control-label" for="field_distrito">Distrito</label>
-            <input type="text" class="form-control" name="distrito" id="field_distrito"
-                    ng-model="denuncia.distrito"
+            <label class="control-label" for="field_latitud">Latitud</label>
+            <input type="text" class="form-control" name="latitud" id="field_latitud"
+                    ng-model="denuncia.latitud"
                      />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_tipoSancion">TipoSancion</label>
-            <input type="text" class="form-control" name="tipoSancion" id="field_tipoSancion"
-                    ng-model="denuncia.tipoSancion"
+            <label class="control-label" for="field_longitud">Longitud</label>
+            <input type="text" class="form-control" name="longitud" id="field_longitud"
+                    ng-model="denuncia.longitud"
                      />
         </div>
         <div class="form-group">
@@ -66,6 +52,37 @@
             <input type="text" class="form-control" name="placa" id="field_placa"
                     ng-model="denuncia.placa"
                      />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_estado">Estado</label>
+            <select class="form-control" name="estado" ng-model="denuncia.estado" id="field_estado">
+                <option value="Creada">Creada</option>
+                <option value="Enviada">Enviada</option>
+                <option value="Notificada">Notificada</option>
+            </select>
+        </div>
+        <div class="form-group" ngf-drop ngf-change="setFoto($file, denuncia)" ngf-pattern="'image/*'">
+            <label class="control-label" for="field_foto">Foto</label>
+            <div>
+                <img data-ng-src="{{'data:' + denuncia.fotoContentType + ';base64,' + denuncia.foto}}" style="max-height: 100px;" ng-if="denuncia.foto"/>
+                <div class="help-block clearfix">
+                    <span class="pull-left">{{denuncia.fotoContentType}} {{byteSize(denuncia.foto)}}</span>
+                    <button ng-click="denuncia.foto=null;denuncia.fotoContentType=null;"
+                            ng-if="denuncia.foto"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="file" ngf-select class="btn btn-default btn-block"
+                        ngf-change="setFoto($file, denuncia)" accept="image/*">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="foto" id="field_foto"
+                    ng-model="denuncia.foto"
+                     />
+            <input type="hidden" class="form-control" name="fotoContentType" id="field_fotoContentType"
+                    ng-model="denuncia.fotoContentType" />
         </div>
 
     </div>

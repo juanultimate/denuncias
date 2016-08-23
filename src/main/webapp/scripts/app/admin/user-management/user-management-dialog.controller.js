@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('denunciasApp').controller('UserManagementDialogController',
-    ['$scope', '$stateParams', '$uibModalInstance', 'entity', 'User', 
+    ['$scope', '$stateParams', '$uibModalInstance', 'entity', 'User',
         function($scope, $stateParams, $uibModalInstance, entity, User) {
 
         $scope.user = entity;
-        $scope.authorities = ["ROLE_USER", "ROLE_ADMIN"];
+        $scope.authorities = ["ROLE_USER", "ROLE_ADMIN", "ROLE_ANT"];
         var onSaveSuccess = function (result) {
             $scope.isSaving = false;
             $uibModalInstance.close(result);

@@ -1,0 +1,66 @@
+<div>
+    <h2>Reportes</h2>
+    <jh-alert></jh-alert>
+    <div class="container-fluid">
+
+        <div class="form-group">
+            <label for="tipo-reporte">Tipo reporte</label>
+            <select class="form-control" name="tipo-reporte" ng-model="tipoReporte" id="tipo-reporte"
+                    ng-change="updateReport(tipoReporte)">
+                <option value="dia">Por D&iacute;a</option>
+                <option value="pago">Por Estado de Pago</option>
+                <option value="mes">Por Mes</option>
+                <option value="anio">Por A&nacute;o</option>
+            </select>
+        </div>
+
+
+        <div class="form-group">
+            <label for="tipo-grafico">Tipo gr&aacute;fico</label>
+            <select class="form-control" name="tipó-grafico" ng-model="tipoGrafico" id="tipo-grafico">
+                <option value="column2d">Columnas 2D</option>
+                <option value="column3d">Columnas 3D</option>
+                <option value="line">L&iacute;neas</option>
+                <option value="area2d">Area 2D</option>
+                <option value="bar2d">bar2d</option>
+                <option value="bar3d">bar3d</option>
+                <option value="pie2d">pie2d</option>
+                <option value="pie3d">pie3d</option>
+                <option value="doughnut2d">doughnut2d</option>
+                <option value="doughnut3d">doughnut3d</option>
+                <option value="pareto2d">pareto2d</option>
+                <option value="pareto3d">pareto3d</option>
+
+            </select>
+        </div>
+
+
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table table-hover table-bordered table-striped ">
+                <thead class="bg-primary">
+                <th class="sucess" colspan="2"><p class="text-capitalize text-center">
+                    {{myDataSource.chart.subCaption}}</p>
+                </th>
+                </thead>
+                <tbody>
+                <tr data-ng-repeat="data in myDataSource.data">
+                    <td>{{data.label}}</td>
+                    <td>{{data.value}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <div fusioncharts  theme="zune"
+                 width="550"
+                 height="400"
+                 type="{{tipoGrafico}}"
+                 dataSource="{{myDataSource}}">
+            </div>
+        </div>
+
+    </div>
+</div>

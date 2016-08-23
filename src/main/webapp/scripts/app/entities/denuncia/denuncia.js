@@ -53,13 +53,14 @@ angular.module('denunciasApp')
                             entity: function () {
                                 return {
                                     codigo: null,
-                                    canton: null,
                                     fecha: null,
-                                    sancion: null,
-                                    estado: null,
-                                    distrito: null,
-                                    tipoSancion: null,
+                                    sancionable: null,
+                                    latitud: null,
+                                    longitud: null,
                                     placa: null,
+                                    estado: null,
+                                    foto: null,
+                                    fotoContentType: null,
                                     id: null
                                 };
                             }

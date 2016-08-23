@@ -5,6 +5,10 @@ buildscript {
         maven { url 'http://repo.spring.io/plugins-release' }
         maven { url 'http://repo.spring.io/milestone' }
         maven { url "https://plugins.gradle.org/m2/" }
+//        mavenRepo(
+//            name: 'zt-public-snapshots',
+//            url: 'http://repos.zeroturnaround.com/nexus/content/groups/zt-public/'
+//        )
     }
     dependencies {
         classpath group: 'org.sonarqube.gradle', name: 'gradle-sonarqube-plugin', version: '1.0'
@@ -13,6 +17,8 @@ buildscript {
         classpath group: 'org.springframework.build.gradle', name: 'propdeps-plugin', version: '0.0.7'
         classpath group: 'com.moowork.gradle', name: 'gradle-node-plugin', version: '0.11'
         classpath group: 'com.moowork.gradle', name: 'gradle-grunt-plugin', version: '0.11'
+        classpath group: 'org.zeroturnaround', name: 'gradle-jrebel-plugin', version: '1.1.2'
+
         //jhipster-needle-gradle-buildscript-dependency - JHipster will add additional gradle build script plugins here
     }
 }
@@ -25,6 +31,7 @@ apply plugin: 'spring-boot'
 apply plugin: 'war'
 apply plugin: 'propdeps'
 defaultTasks 'bootRun'
+apply plugin: 'rebel'
 
 bootRepackage {
    mainClass = 'com.denuncias.Application'
@@ -88,6 +95,8 @@ repositories {
     maven { url 'https://oss.sonatype.org/content/repositories/releases' }
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     maven { url 'http://repo.maven.apache.org/maven2' }
+    maven { url 'http://repos.zeroturnaround.com/nexus/content/groups/zt-public/' }
+
 }
 
 dependencies {
@@ -105,11 +114,11 @@ dependencies {
     compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: jackson_version
     compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-hibernate4', version: jackson_version
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: jackson_version
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jackson_version
+
     compile (group: 'com.ryantenney.metrics', name: 'metrics-spring', version: metrics_spring_version) {
         exclude(module: 'metrics-core')
         exclude(module: 'metrics-healthchecks')
-    } 
+    }
     compile(group: 'com.zaxxer', name: 'HikariCP', version: HikariCP_version) {
         exclude(module: 'tools')
     }
@@ -119,7 +128,7 @@ dependencies {
     compile group: 'javax.transaction', name: 'javax.transaction-api'
     compile group: 'org.apache.geronimo.javamail', name: 'geronimo-javamail_1.4_mail', version: geronimo_javamail_1_4_mail_version
     compile group: 'org.hibernate', name: 'hibernate-core', version: hibernate_entitymanager_version
-    
+
     compile group: 'org.hibernate', name: 'hibernate-envers'
     compile group: 'org.hibernate', name: 'hibernate-validator'
     compile group: 'org.springframework.boot', name: 'spring-boot-actuator'
@@ -146,9 +155,14 @@ dependencies {
     compile(group: 'io.springfox', name: 'springfox-swagger2', version: springfox_version){
         exclude module: 'mapstruct'
     }
-    
+
     compile group: 'fr.ippon.spark.metrics', name: 'metrics-spark-reporter', version: metrics_spark_reporter_version
     compile group: 'org.mapstruct', name: 'mapstruct-jdk8', version: mapstruct_version
+    compile 'org.apache.httpcomponents:httpclient:4.5.1'
+    compile 'commons-lang:commons-lang:2.3'
+    compile 'org.json:json:20160212'
+    compile 'org.projectlombok:lombok-maven:1.16.8.0'
+
     testCompile group: 'com.jayway.awaitility', name: 'awaitility', version: awaility_version
     testCompile group: 'com.jayway.jsonpath', name: 'json-path'
     testCompile group: 'info.cukes', name: 'cucumber-junit', version: cucumber_version
@@ -159,9 +173,9 @@ dependencies {
     testCompile group: 'org.mockito', name: 'mockito-core'
     testCompile group: 'de.flapdoodle.embed', name: 'de.flapdoodle.embed.mongo'
     testCompile group: 'org.hamcrest', name: 'hamcrest-library'
-    
+
     testCompile group: 'io.gatling.highcharts', name: 'gatling-charts-highcharts', version: gatling_version
-    
+
     testCompile group: 'com.h2database', name: 'h2'
     optional group: 'org.springframework.boot', name:'spring-boot-configuration-processor', version: spring_boot_version
     //jhipster-needle-gradle-dependency - JHipster will add additional dependencies here

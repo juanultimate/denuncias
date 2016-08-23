@@ -7,7 +7,7 @@ angular.module('denunciasApp')
                 parent: 'account',
                 url: '/settings',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN', 'ROLE_USER', 'USER_ANT'],
                     pageTitle: 'Settings'
                 },
                 views: {
@@ -17,7 +17,7 @@ angular.module('denunciasApp')
                     }
                 },
                 resolve: {
-                    
+
                 }
             });
     });
