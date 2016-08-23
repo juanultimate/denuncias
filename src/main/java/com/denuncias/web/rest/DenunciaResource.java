@@ -54,6 +54,7 @@ public class DenunciaResource {
             Denuncia denuncia = new Denuncia();
             denuncia.setLatitud(lat);
             denuncia.setLongitud(lon);
+            denuncia.setCodigo(placa);
             denuncia.setPlaca(placa);
             denuncia.setFoto(file.getBytes());
             denuncia.setFotoContentType("image/jpeg");
