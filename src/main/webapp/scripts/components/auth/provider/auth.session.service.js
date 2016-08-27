@@ -6,6 +6,7 @@ angular.module('denunciasApp')
             login: function(credentials) {
                 var data = 'j_username=' + encodeURIComponent(credentials.username) +
                     '&j_password=' + encodeURIComponent(credentials.password) +
+                    '&phone=' + encodeURIComponent(credentials.phone) +
                     '&remember-me=' + credentials.rememberMe + '&submit=Login';
                 return $http.post('api/authentication', data, {
                     headers: {

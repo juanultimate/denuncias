@@ -1,0 +1,12 @@
+<mongoChangeLog>
+    <changeSet changeId="ChangeSet-4" author="jhipster">
+        <script>
+            db.jhi_user.update({
+            phone : '123456789'
+            },
+            {
+                multi: true
+            });
+        </script>
+    </changeSet>
+</mongoChangeLog>

@@ -4,6 +4,7 @@ angular.module('denunciasApp')
     .factory('Auth', function Auth($rootScope, $state, $q, Principal, AuthServerProvider, Account, Register, Activate, Password, PasswordResetInit, PasswordResetFinish) {
         return {
             login: function (credentials, callback) {
+                console.log(credentials)
                 var cb = callback || angular.noop;
                 var deferred = $q.defer();
 
