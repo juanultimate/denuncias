@@ -6,6 +6,7 @@ import com.denuncias.domain.Denuncia;
 import com.denuncias.domain.enumeration.Estado;
 import com.denuncias.repository.CantonRepository;
 import com.denuncias.repository.DenunciaRepository;
+import com.denuncias.service.denuncias.CodeGenerator;
 import com.denuncias.web.rest.util.HeaderUtil;
 import com.denuncias.web.rest.util.LocationUtil;
 import com.denuncias.web.rest.util.PaginationUtil;
@@ -43,18 +44,20 @@ public class DenunciaResource {
     @Inject
     CantonRepository cantonRepository;
 
+    @Inject
+    CodeGenerator codeGenerator;
+
 
 
     @RequestMapping(method = RequestMethod.POST, value = "/upload")
     public @ResponseBody ResponseEntity<Denuncia> handleFileUpload(@RequestParam("lat") String lat,
                              @RequestParam("lon") String lon,
-                             @RequestParam("placa") String placa,
                              @RequestParam("key") MultipartFile file)  {
         try {
             Denuncia denuncia = new Denuncia();
+            denuncia.setCodigo(codeGenerator.generarCodigo());
             denuncia.setLatitud(lat);
             denuncia.setLongitud(lon);
-            denuncia.setPlaca(placa);
             denuncia.setFoto(file.getBytes());
             denuncia.setFotoContentType("image/jpeg");
             return this.createDenuncia(denuncia);
