@@ -18,6 +18,12 @@ angular.module('denunciasApp')
                 $scope.myDataSource.data = result;
             });
             switch(tipoReporte) {
+                case 'anio':{
+                    $scope.myDataSource.chart.caption=""
+                    $scope.myDataSource.chart.subCaption="Alertas por año"
+                    break;
+                }
+
                 case 'dia':{
                     $scope.myDataSource.chart.caption=""
                     $scope.myDataSource.chart.subCaption="Alertas por día"
