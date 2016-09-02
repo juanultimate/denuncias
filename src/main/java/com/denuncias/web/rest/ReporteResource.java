@@ -95,7 +95,7 @@ public class ReporteResource {
                 DBCollection collection = mongoTemplate.getCollection("denuncia");
                 AggregationOutput output = collection.aggregate(pipeline);
                 for (DBObject item :output.results()) {
-                    data.add(new ReportData(StringUtils.capitalize(DiaSemana.fromInteger(Integer.valueOf(item.get("_id").toString())).toString()),Long.valueOf(item.get("value").toString())));
+                    data.add(new ReportData(StringUtils.capitalize(DiaSemana.fromInteger(Integer.valueOf(item.get("_id").toString())).toString().toLowerCase()),Long.valueOf(item.get("value").toString())));
                 }
                 break;
             }
