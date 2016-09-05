@@ -1,13 +1,12 @@
 /*jshint node: true */
 'use strict';
 module.exports = function(grunt) {
+  // see https://saucelabs.com/rest/v1/info/browsers/webdriver
   var browsers = [{
       browserName: "iphone",
-      platform: "OS X 10.8",
-      version: "6"
+      version: "7.0"
   }, {
       browserName: "iphone",
-      platform: "OS X 10.10",
       version: "9.2"
   }, {
       browserName: "android",
@@ -84,6 +83,8 @@ module.exports = function(grunt) {
     tags.push(process.env.TRAVIS_BRANCH);
   }
 
+  var version = require("./package.json").version;
+
   grunt.initConfig({
       connect: {
           server: {
@@ -96,7 +97,7 @@ module.exports = function(grunt) {
       'saucelabs-qunit': {
           all: {
               options: {
-                  urls: ["http://127.0.0.1:9999/test/index.html"],
+                  urls: ["http://127.0.0.1:9999/test/index.html?hidepassed"],
                   build: process.env.TRAVIS_JOB_ID,
                   throttled: 3,
                   "max-duration" : 600, // seconds, IE6 is slow
@@ -136,16 +137,16 @@ module.exports = function(grunt) {
         options: {
           browserifyOptions: {
             standalone: 'JSZip',
-            insertGlobalVars : {
-              Buffer: function () {
-                // instead of the full polyfill, we just use the raw value
-                // (or undefined).
-                return '(typeof Buffer !== "undefined" ? Buffer : undefined)';
-              }
-            }
+            transform: ['package-json-versionify'],
+            insertGlobalVars: {
+                process: undefined,
+                Buffer: undefined,
+                __filename: undefined,
+                __dirname: undefined
+            },
+            builtins: false
           },
-          ignore : ["./lib/nodejs/*"],
-          banner : grunt.file.read('lib/license_header.js')
+          banner : grunt.file.read('lib/license_header.js').replace(/__VERSION__/, version)
         }
       }
     },
@@ -153,12 +154,15 @@ module.exports = function(grunt) {
       options: {
         mangle: true,
         preserveComments: false,
-        banner : grunt.file.read('lib/license_header.js')
+        banner : grunt.file.read('lib/license_header.js').replace(/__VERSION__/, version)
       },
       all: {
         src: 'dist/jszip.js',
         dest: 'dist/jszip.min.js'
       }
+    },
+    qunit: {
+        all: ['test/**/*.html']
     }
   });
 
@@ -167,11 +171,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-qunit');
 
   if (process.env.SAUCE_USERNAME && process.env.SAUCE_ACCESS_KEY) {
-    grunt.registerTask("test", ["connect", "saucelabs-qunit"]);
+    grunt.registerTask("test", ["qunit", "connect", "saucelabs-qunit"]);
   } else {
-    grunt.registerTask("test", []);
+    grunt.registerTask("test", ["qunit"]);
   }
   grunt.registerTask("build", ["browserify", "uglify"]);
   grunt.registerTask("default", ["jshint", "build"]);
