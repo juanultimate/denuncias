@@ -2,8 +2,6 @@
 
 angular.module('denunciasApp')
     .controller('TipoSancionController', function ($scope, $state, Reporte, ParseLinks) {
-        $scope.tipoReporte='dia';
-        $scope.tipoGrafico='pie2d';
         $scope.myDataSource = {
             chart: {
                 caption: "",
