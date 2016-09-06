@@ -6,7 +6,10 @@
         <div class="col-md-8">
             <div ng-switch="isAuthenticated()">
                 <div class="alert alert-success" ng-switch-when="true">
-                    Has ingresado como usuario "{{account.login}}".
+                    Bienvenido  "{{account.firstName}} {{account.lastName}}".
+                </div>
+                <div class="alert alert-success" ng-switch-when="true">
+                    Has ingresado como "{{account.authorities[0] === 'ROLE_ADMIN'?'ADMINISTRADOR':account.authorities[0] === 'ROLE_USER'? 'OPERADOR' : account.authorities[0] === 'ROLE_ANT' ? 'SUPERVISOR' :'Anónimo'}}".
                 </div>
                 <div class="alert alert-warning" ng-switch-when="false" ng-show="{{ENV === 'prod'}}">
                     <a class="alert-link" href="#/login">Ingresar</a>
