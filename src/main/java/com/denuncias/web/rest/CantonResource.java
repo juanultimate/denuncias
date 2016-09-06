@@ -29,10 +29,10 @@ import java.util.Optional;
 public class CantonResource {
 
     private final Logger log = LoggerFactory.getLogger(CantonResource.class);
-        
+
     @Inject
     private CantonRepository cantonRepository;
-    
+
     /**
      * POST  /cantons -> Create a new canton.
      */
@@ -47,7 +47,7 @@ public class CantonResource {
         }
         Canton result = cantonRepository.save(canton);
         return ResponseEntity.created(new URI("/api/cantons/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert("canton", result.getId().toString()))
+            .headers(HeaderUtil.createEntityCreationAlert("cantón", result.getCodigo().toString()))
             .body(result);
     }
 
@@ -65,7 +65,7 @@ public class CantonResource {
         }
         Canton result = cantonRepository.save(canton);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert("canton", canton.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert("canton", canton.getCodigo().toString()))
             .body(result);
     }
 
@@ -79,7 +79,7 @@ public class CantonResource {
     public ResponseEntity<List<Canton>> getAllCantons(Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of Cantons");
-        Page<Canton> page = cantonRepository.findAll(pageable); 
+        Page<Canton> page = cantonRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/cantons");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

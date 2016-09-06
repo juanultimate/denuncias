@@ -3,7 +3,7 @@
 angular.module('denunciasApp').controller('CantonDialogController',
     ['$scope', '$stateParams', '$uibModalInstance', 'entity', 'Canton',
         function($scope, $stateParams, $uibModalInstance, entity, Canton) {
-
+        $scope.new = $stateParams.id === undefined ;
         $scope.canton = entity;
         $scope.load = function(id) {
             Canton.get({id : id}, function(result) {
