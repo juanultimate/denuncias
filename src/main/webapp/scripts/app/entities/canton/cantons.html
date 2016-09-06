@@ -15,18 +15,30 @@
     </div>
     <br/>
     <div class="table-responsive">
+        <form>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+                    <input type="text" class="form-control" placeholder="Search da Fish" ng-model="searchParam">
+
+                </div>
+            </div>
+        </form>
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="predicate" ascending="reverse" callback="loadAll()">
                     <th jh-sort-by="codigo"><span>Código</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="nombre"><span>Nombre</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="provincia"><span>Provincia</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="canton in cantons track by canton.id">
+                <tr ng-repeat="canton in cantons track by canton.id | filter:searchParam">
                     <td>{{canton.codigo}}</td>
                     <td>{{canton.nombre}}</td>
+                    <td>{{canton.provincia}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

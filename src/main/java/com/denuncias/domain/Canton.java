@@ -19,18 +19,20 @@ import java.util.Objects;
 
 public class Canton implements Serializable {
     @JsonCreator
-    public Canton(@JsonProperty("id") String id, @JsonProperty("codigo") String codigo, @JsonProperty("nombre") String nombre) {
+    public Canton(@JsonProperty("id") String id, @JsonProperty("codigo") String codigo, @JsonProperty("nombre") String nombre, @JsonProperty("provincia") String provincia) {
         this.id = id;
         this.codigo = codigo;
         this.nombre = nombre;
+        this.provincia = provincia;
     }
 
     public Canton() {
     }
 
-    public Canton(String codigo, String nombre) {
+    public Canton(String codigo, String nombre, String provincia) {
         this.codigo = codigo;
         this.nombre = nombre;
+        this.provincia = provincia;
     }
 
 
@@ -43,6 +45,7 @@ public class Canton implements Serializable {
             this.id = newCanton.id;
             this.codigo = newCanton.codigo;
             this.nombre =newCanton.nombre;
+            this.provincia =newCanton.provincia;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -61,6 +64,9 @@ public class Canton implements Serializable {
 
     @Field("nombre")
     private String nombre;
+
+    @Field("provincia")
+    private String provincia;
 
     public String getId() {
         return id;
@@ -84,6 +90,14 @@ public class Canton implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getProvincia() {
+        return provincia;
+    }
+
+    public void setProvincia(String provincia) {
+        this.provincia = provincia;
     }
 
     @Override
@@ -112,6 +126,7 @@ public class Canton implements Serializable {
             "id=" + id +
             ", codigo='" + codigo + "'" +
             ", nombre='" + nombre + "'" +
+            ", provincia='" + provincia + "'" +
             '}';
     }
 

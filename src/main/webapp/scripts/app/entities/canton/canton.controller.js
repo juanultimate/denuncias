@@ -2,6 +2,7 @@
 
 angular.module('denunciasApp')
     .controller('CantonController', function ($scope, $state, Canton, ParseLinks) {
+        $scope.searchParam = '';
 
         $scope.cantons = [];
         $scope.predicate = 'id';
