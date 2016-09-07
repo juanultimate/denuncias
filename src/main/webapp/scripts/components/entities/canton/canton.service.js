@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('denunciasApp')
-    .factory('Canton', function ($resource, DateUtils) {
-        return $resource('api/cantons/:id', {}, {
+    .factory('Canton', function ($resource, DateUtils,$http) {
+        return $resource('api/cantons/:id/:provincias/', {}, {
             'query': { method: 'GET', isArray: true},
             'get': {
                 method: 'GET',
@@ -11,6 +11,12 @@ angular.module('denunciasApp')
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': { method:'PUT' },
+            'provincias': {method: 'GET',
+                params: {
+                    provincias: 'provincias'
+                },
+                isArray: true
+            }
         });
     });

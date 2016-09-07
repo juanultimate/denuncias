@@ -3,6 +3,7 @@ package com.denuncias.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.denuncias.domain.Canton;
 import com.denuncias.repository.CantonRepository;
+import com.denuncias.repository.CustomCantonRepository;
 import com.denuncias.web.rest.util.HeaderUtil;
 import com.denuncias.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -32,6 +33,8 @@ public class CantonResource {
 
     @Inject
     private CantonRepository cantonRepository;
+    @Inject
+    private CustomCantonRepository customCantonRepository;
 
     /**
      * POST  /cantons -> Create a new canton.
@@ -112,5 +115,17 @@ public class CantonResource {
         log.debug("REST request to delete Canton : {}", id);
         cantonRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("canton", id.toString())).build();
+    }
+
+    /**
+     * GET  /cantons/:id -> get the "id" canton.
+     */
+    @RequestMapping(value = "/cantons/provincias",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<String>> getDistinctProvincias() {
+        log.debug("REST request to get Provincias");
+        List<String> provincias = customCantonRepository.getDistinctProvincias();
+        return new ResponseEntity<List<String>>(provincias, HttpStatus.OK);
     }
 }

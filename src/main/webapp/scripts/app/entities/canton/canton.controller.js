@@ -3,7 +3,6 @@
 angular.module('denunciasApp')
     .controller('CantonController', function ($scope, $state, Canton, ParseLinks) {
         $scope.searchParam = '';
-
         $scope.cantons = [];
         $scope.predicate = 'id';
         $scope.reverse = true;
@@ -13,7 +12,10 @@ angular.module('denunciasApp')
                 $scope.links = ParseLinks.parse(headers('link'));
                 $scope.totalItems = headers('X-Total-Count');
                 $scope.cantons = result;
+
             });
+        console.log(Canton);
+        $scope.provincias = Canton.provincias();
         };
         $scope.loadPage = function(page) {
             $scope.page = page;

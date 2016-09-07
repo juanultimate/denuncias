@@ -16,7 +16,7 @@
         </div-->
         <div class="form-group">
             <label class="control-label" for="field_codigo">Código</label>
-            <input type="text" class="form-control" name="codigo" id="field_codigo"
+            <input type="text" class="form-control" name="codigo" id="field_codigo" readonly
                     ng-model="canton.codigo"
                      />
         </div>
@@ -25,6 +25,13 @@
             <input type="text" class="form-control" name="nombre" id="field_nombre"
                     ng-model="canton.nombre"
                      />
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="field_provincia">Provincia</label>
+            <input type="text" class="form-control" name="provincia" id="field_provincia"
+                   ng-model="canton.provincia"
+            />
         </div>
 
     </div>
