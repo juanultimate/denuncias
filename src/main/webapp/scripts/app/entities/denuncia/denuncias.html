@@ -13,6 +13,7 @@
 
                     <th jh-sort-by="latitud"><span>Latitud</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="longitud"><span>Longitud</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="latitud"><span>Cantón</span> <span class="glyphicon glyphicon-sort"></span></th>
 
 
                     <th jh-sort-by="foto"><span>Foto</span> <span class="glyphicon glyphicon-sort"></span></th>
@@ -26,6 +27,7 @@
                     <td>{{denuncia.fecha | date:'mediumDate'}}</td>
                     <td>{{denuncia.latitud}}</td>
                     <td>{{denuncia.longitud}}</td>
+                    <td>{{denuncia.canton.nombre}}</td>
                     <td>
                         <img data-ng-src="{{'data:' + denuncia.fotoContentType + ';base64,' + denuncia.foto}}" style="max-height: 30px;" ng-if="denuncia.foto"/> {{denuncia.fotoContentType}} {{byteSize(denuncia.foto)}}
                     </td>
