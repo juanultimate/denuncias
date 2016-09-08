@@ -10,13 +10,12 @@
                     <th jh-sort-by="codigo"><span>Código</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="fecha"><span>Fecha</span> <span class="glyphicon glyphicon-sort"></span></th>
 
-                    <th jh-sort-by="latitud"><span>Latitud</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="longitud"><span>Longitud</span> <span class="glyphicon glyphicon-sort"></span></th>
+
+                    <th jh-sort-by="longitud"><span>Direcci&oacute;n</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="longitud"><span>Cant&oacute;n</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="longitud"><span>Pagado</span> <span class="glyphicon glyphicon-sort"></span></th>
 
 
-                    <th jh-sort-by="foto"><span>Foto</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -25,13 +24,9 @@
 
                     <td><a ui-sref="denuncia-ant.detail({id:denuncia.id})">{{denuncia.codigo}}</a></td>
                     <td>{{denuncia.fecha | date:'mediumDate'}}</td>
-                    <td>{{denuncia.latitud}}</td>
-                    <td>{{denuncia.longitud}}</td>
+                    <td>{{denuncia.direccion}}</td>
                     <td>{{denuncia.canton.nombre}}</td>
-                    <td>{{denuncia.pagado}}</td>
-                    <td>
-                        <img data-ng-src="{{'data:' + denuncia.fotoContentType + ';base64,' + denuncia.foto}}" style="max-height: 30px;" ng-if="denuncia.foto"/> {{denuncia.fotoContentType}} {{byteSize(denuncia.foto)}}
-                    </td>
+                    <td>{{denuncia.pagado === true ? 'SI' : 'NO'}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
