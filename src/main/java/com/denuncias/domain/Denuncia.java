@@ -1,20 +1,12 @@
 package com.denuncias.domain;
 
-import java.time.LocalDate;
-
-import com.denuncias.domain.util.JSR310DateTimeSerializer;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Objects;
 
 import com.denuncias.domain.enumeration.Estado;
@@ -65,10 +57,11 @@ public class Denuncia implements Serializable {
     @Field("pagado")
     private Boolean pagado;
 
-
-
     @DBRef
     private Canton canton;
+
+    @DBRef
+    private User usuarioOperador;
 
     public String getId() {
         return id;
@@ -174,6 +167,14 @@ public class Denuncia implements Serializable {
         this.pagado = pagado;
     }
 
+    public User getUsuarioOperador() {
+        return usuarioOperador;
+    }
+
+    public void setUsuarioOperador(User usuarioOperador) {
+        this.usuarioOperador = usuarioOperador;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -211,6 +212,7 @@ public class Denuncia implements Serializable {
             //", canton='"+canton.toString()+
             ", direccion='" + direccion + "'" +
             ", pagado='" + pagado + "'" +
+            ", operador='" + usuarioOperador + "'" +
             '}';
     }
 

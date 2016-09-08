@@ -20,7 +20,7 @@ public class HeaderUtil {
     }
 
     public static HttpHeaders createEntityUpdateAlert(String entityName, String param) {
-        return createAlert("El " + entityName + " está actualizado con el identificador" + param, param);
+        return createAlert( entityName + " actualizada con el identificador" + param, param);
     }
 
     public static HttpHeaders createEntityDeletionAlert(String entityName, String param) {

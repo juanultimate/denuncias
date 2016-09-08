@@ -6,6 +6,7 @@ import com.denuncias.domain.Denuncia;
 import com.denuncias.domain.enumeration.Estado;
 import com.denuncias.repository.CantonRepository;
 import com.denuncias.repository.DenunciaRepository;
+import com.denuncias.service.UserService;
 import com.denuncias.service.denuncias.CodeGenerator;
 import com.denuncias.web.rest.util.HeaderUtil;
 import com.denuncias.web.rest.util.LocationUtil;
@@ -46,6 +47,9 @@ public class DenunciaResource {
 
     @Inject
     CodeGenerator codeGenerator;
+
+    @Inject
+    private UserService userService;
 
 
 
@@ -111,9 +115,12 @@ public class DenunciaResource {
         if (denuncia.getId() == null) {
             return createDenuncia(denuncia);
         }
+        if(Estado.Enviada.equals(denuncia.getEstado())){
+            denuncia.setUsuarioOperador(userService.getUserWithAuthorities());
+        }
         Denuncia result = denunciaRepository.save(denuncia);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert("denuncia", denuncia.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert("denuncia", denuncia.getCodigo().toString()))
             .body(result);
     }
 
