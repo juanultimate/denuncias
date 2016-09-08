@@ -12,6 +12,7 @@
 
                     <th jh-sort-by="latitud"><span>Latitud</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="longitud"><span>Longitud</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="longitud"><span>Cant&oacute;n</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="longitud"><span>Pagado</span> <span class="glyphicon glyphicon-sort"></span></th>
 
 
@@ -26,6 +27,7 @@
                     <td>{{denuncia.fecha | date:'mediumDate'}}</td>
                     <td>{{denuncia.latitud}}</td>
                     <td>{{denuncia.longitud}}</td>
+                    <td>{{denuncia.canton.nombre}}</td>
                     <td>{{denuncia.pagado}}</td>
                     <td>
                         <img data-ng-src="{{'data:' + denuncia.fotoContentType + ';base64,' + denuncia.foto}}" style="max-height: 30px;" ng-if="denuncia.foto"/> {{denuncia.fotoContentType}} {{byteSize(denuncia.foto)}}
@@ -44,5 +46,5 @@
             </tbody>
         </table>
     </div>
-    <uib-pager total-items="totalItems" ng-model="page" ng-change="loadAll()"></uib-pager>
+    <!--uib-pager total-items="totalItems" ng-model="page" ng-change="loadAll()"></uib-pager-->
 </div>
