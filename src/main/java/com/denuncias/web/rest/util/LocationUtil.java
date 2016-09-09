@@ -56,7 +56,7 @@ public class LocationUtil {
         JSONArray lista = jsonObj2.getJSONArray("elements");
         String provinciaCanton="";
         for (int i = 0; i < lista.length(); i++) {
-            if (lista.getJSONObject(i).getJSONObject("tags").has("admin_level")&& lista.getJSONObject(i).getJSONObject("tags").get("admin_level").equals("6")) {
+            if (lista.getJSONObject(i).getJSONObject("tags").has("admin_level")&& lista.getJSONObject(i).getJSONObject("tags").get("admin_level").equals("4")) {
                 provinciaCanton = lista.getJSONObject(i).getJSONObject("tags").getString("name");
                 break;
             }
