@@ -104,20 +104,20 @@ angular.module('denunciasApp')
             });
         }
 
-        // $scope.map = {
-        //     "zoom": 18,
-        //     "marker": {
-        //         "id":0,
-        //         "options": {
-        //             "icon": {
-        //                 "anchor": new google.maps.Point(36,36),
-        //                 "origin": new google.maps.Point(0,0),
-        //                 "scaledSize": new google.maps.Size(36,36),
-        //                 "url": 'https://maps.google.com/mapfiles/ms/icons/green-dot.png'
-        //             }
-        //         }
-        //     }
-        // };
+        $scope.map = {
+            "zoom": 18,
+            "marker": {
+                "id":0,
+                "options": {
+                    "icon": {
+                        "anchor": new google.maps.Point(36,36),
+                        "origin": new google.maps.Point(0,0),
+                        "scaledSize": new google.maps.Size(36,36),
+                        "url": 'https://maps.google.com/mapfiles/ms/icons/green-dot.png'
+                    }
+                }
+            }
+        };
         uiGmapGoogleMapApi.then(function(maps) {
             $scope.denuncia.$promise.then(function(data) {
                 $scope.coords = {"center": {"latitude": data.latitud, "longitude": data.longitud}};
