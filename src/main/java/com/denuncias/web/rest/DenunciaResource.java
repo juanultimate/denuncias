@@ -79,7 +79,6 @@ public class DenunciaResource {
         if (denuncia.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("denuncia", "idexists", "A new denuncia cannot already have an ID")).body(null);
         }
-
         Canton canton = LocationUtil.getCanton(denuncia.getLatitud(),denuncia.getLongitud());
         List<Canton> cantones = cantonRepository.findByCodigo(canton.getCodigo());
         if(!cantones.isEmpty()){
@@ -88,6 +87,7 @@ public class DenunciaResource {
         else{
             canton = cantonRepository.save(canton);
         }
+        denuncia.setCodigo(codeGenerator.generarCodigo());
         denuncia.setDireccion(LocationUtil.getDireccion(denuncia.getLatitud(),denuncia.getLongitud()));
         denuncia.setCanton(canton);
         denuncia.setFecha(ZonedDateTime.now());
