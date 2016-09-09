@@ -17,7 +17,7 @@ public class CodeGenerator {
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         StringBuilder codigo = new StringBuilder("ACT-");
-        codigo.append(year).append(String.format("%02d", month)).append(String.format("%03d", denunciaRepository.count()));
+        codigo.append(year).append("-").append(String.format("%02d", month)).append("-").append(String.format("%03d", denunciaRepository.count()));
         return codigo.toString();
     }
 }
