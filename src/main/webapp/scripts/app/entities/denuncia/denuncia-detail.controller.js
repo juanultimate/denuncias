@@ -42,6 +42,13 @@ angular.module('denunciasApp')
             $scope.isSaving = false;
         };
 
+        uiGmapGoogleMapApi.then(function(maps) {
+            $scope.denuncia.$promise.then(function(data) {
+                $scope.coords = {"center": {"latitude": data.latitud, "longitude": data.longitud}};
+            });
+
+        });
+
         $scope.map = {
             "zoom": 18,
             "marker": {
@@ -56,10 +63,4 @@ angular.module('denunciasApp')
                 }
             }
         };
-        uiGmapGoogleMapApi.then(function(maps) {
-            $scope.denuncia.$promise.then(function(data) {
-                $scope.coords = {"center": {"latitude": data.latitud, "longitude": data.longitud}};
-            });
-
-        });
     });

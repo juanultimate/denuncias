@@ -34,7 +34,7 @@
                         <li ui-sref-active="active"><a ui-sref="canton" data-toggle="collapse"
                                                        data-target=".navbar-collapse.in"  has-authority="ROLE_ADMIN"><span
                             class="glyphicon glyphicon-asterisk"></span>
-                            &#xA0;<span>Cant&oacute;n</span></a></li>
+                            &#xA0;<span>Cantones</span></a></li>
                         <li ui-sref-active="active" ><a ui-sref="tipoSancion" data-toggle="collapse" data-target=".navbar-collapse.in" has-authority="ROLE_ADMIN"><span class="glyphicon glyphicon-asterisk"></span>
                             &#xA0;<span >Reportes</span></a></li>
                         <li  has-any-authority="ROLE_USER" ui-sref-active="active"><a ui-sref="denuncia" data-toggle="collapse"
@@ -68,10 +68,10 @@
                                                                              data-target=".navbar-collapse.in"><span
                             class="glyphicon glyphicon-lock"></span>
                             &#xA0;<span>Contrase&nacute;a</span></a></li>
-                        <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="sessions" data-toggle="collapse"
+                        <!--li ui-sref-active="active" ng-switch-when="true"><a ui-sref="sessions" data-toggle="collapse"
                                                                              data-target=".navbar-collapse.in"><span
                             class="glyphicon glyphicon-cloud"></span>
-                            &#xA0;<span>Sesiones activas</span></a></li>
+                            &#xA0;<span>Sesiones activas</span></a></li-->
                         <li ui-sref-active="active" ng-switch-when="true"><a href="" ng-click="logout()" id="logout"
                                                                              data-toggle="collapse"
                                                                              data-target=".navbar-collapse.in"><span
@@ -101,7 +101,7 @@
                                                        data-target=".navbar-collapse.in"><span
                             class="glyphicon glyphicon-user"></span>
                             &#xA0;<span>Administraci&oacute;n de usuarios</span></a></li>
-                        <li ui-sref-active="active"><a ui-sref="metrics" data-toggle="collapse"
+                        <!--li ui-sref-active="active"><a ui-sref="metrics" data-toggle="collapse"
                                                        data-target=".navbar-collapse.in"><span
                             class="glyphicon glyphicon-dashboard"></span>
                             &#xA0;<span>M&eacute;tricas</span></a></li>

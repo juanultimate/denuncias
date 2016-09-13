@@ -11,6 +11,10 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
+            'https://maps.googleapis.com/maps/api/js?sensor=false',
+            'http://static.fusioncharts.com/code/latest/fusioncharts.js',
+            'test/javascript/mocks/maps.googleapis.com-maps-api.js',
+
             // bower:js
             'main/webapp/bower_components/jquery/dist/jquery.js',
             'main/webapp/bower_components/angular/angular.js',
@@ -41,6 +45,7 @@ module.exports = function (config) {
             'main/webapp/bower_components/angular-google-maps/dist/angular-google-maps.js',
             'main/webapp/bower_components/angular-mocks/angular-mocks.js',
             // endbower
+            'main/webapp/bower_components/fusion-charts/angular-fusioncharts.min.js',
             'main/webapp/scripts/app/app.js',
             'main/webapp/scripts/app/**/*.js',
             'main/webapp/scripts/components/**/*.+(js|html)',
@@ -57,15 +62,15 @@ module.exports = function (config) {
             './**/*.js': ['coverage']
         },
 
-        reporters: ['dots', 'jenkins', 'coverage', 'progress'],
+        reporters: ['dots',  'coverage', 'progress'],
 
         jenkinsReporter: {
-            
+
             outputFile: '../build/test-results/karma/TESTS-results.xml'
         },
 
         coverageReporter: {
-            
+
             dir: '../build/test-results/coverage',
             reporters: [
                 {type: 'lcov', subdir: 'report-lcov'}
@@ -77,7 +82,7 @@ module.exports = function (config) {
 
         // level of logging
         // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-        logLevel: config.LOG_INFO,
+        logLevel: config.LOG_DEBUG,
 
         // enable / disable watching file and executing tests whenever any file changes
         autoWatch: false,

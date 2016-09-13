@@ -3,6 +3,7 @@ package com.denuncias.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.denuncias.domain.Canton;
 import com.denuncias.repository.CantonRepository;
+import com.denuncias.repository.CustomCantonRepository;
 import com.denuncias.web.rest.util.HeaderUtil;
 import com.denuncias.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -29,10 +30,12 @@ import java.util.Optional;
 public class CantonResource {
 
     private final Logger log = LoggerFactory.getLogger(CantonResource.class);
-        
+
     @Inject
     private CantonRepository cantonRepository;
-    
+    @Inject
+    private CustomCantonRepository customCantonRepository;
+
     /**
      * POST  /cantons -> Create a new canton.
      */
@@ -47,7 +50,7 @@ public class CantonResource {
         }
         Canton result = cantonRepository.save(canton);
         return ResponseEntity.created(new URI("/api/cantons/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert("canton", result.getId().toString()))
+            .headers(HeaderUtil.createEntityCreationAlert("cantón", result.getCodigo().toString()))
             .body(result);
     }
 
@@ -65,7 +68,7 @@ public class CantonResource {
         }
         Canton result = cantonRepository.save(canton);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert("canton", canton.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert("canton", canton.getCodigo().toString()))
             .body(result);
     }
 
@@ -79,7 +82,7 @@ public class CantonResource {
     public ResponseEntity<List<Canton>> getAllCantons(Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of Cantons");
-        Page<Canton> page = cantonRepository.findAll(pageable); 
+        Page<Canton> page = cantonRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/cantons");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -112,5 +115,17 @@ public class CantonResource {
         log.debug("REST request to delete Canton : {}", id);
         cantonRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("canton", id.toString())).build();
+    }
+
+    /**
+     * GET  /cantons/:id -> get the "id" canton.
+     */
+    @RequestMapping(value = "/cantons/provincias",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<String>> getDistinctProvincias() {
+        log.debug("REST request to get Provincias");
+        List<String> provincias = customCantonRepository.getDistinctProvincias();
+        return new ResponseEntity<List<String>>(provincias, HttpStatus.OK);
     }
 }

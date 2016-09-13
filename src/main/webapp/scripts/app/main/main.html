@@ -6,14 +6,17 @@
         <div class="col-md-8">
             <div ng-switch="isAuthenticated()">
                 <div class="alert alert-success" ng-switch-when="true">
-                    Has ingresado como usuario "{{account.login}}".
+                    Bienvenido  "{{account.firstName}} {{account.lastName}}".
                 </div>
-                <div class="alert alert-warning" ng-switch-when="false">
-                    Si quieres <a class="alert-link" href="#/login">ingresar</a>, puedes intentar con las siguientes cuentas:<br/>- Administrador (Usuario="admin" y  clave="admin") <br/>- Usuario (Uduario="user" y clave="user"). <br/>- Usuario ANT (Uduario="ant" y clave="user").
+                <div class="alert alert-success" ng-switch-when="true">
+                    Has ingresado como "{{account.authorities[0] === 'ROLE_ADMIN'?'ADMINISTRADOR':account.authorities[0] === 'ROLE_USER'? 'OPERADOR' : account.authorities[0] === 'ROLE_ANT' ? 'SUPERVISOR' :'Anónimo'}}".
+                </div>
+                <div class="alert alert-warning" ng-switch-when="false" ng-show="{{ENV === 'prod'}}">
+                    <a class="alert-link" href="#/login">Ingresar</a>
                 </div>
 
-                <div class="alert alert-warning" ng-switch-when="false">
-                    Aún no tienes una cuenta? <a class="alert-link" href="#/register">Registra una nueva cuenta.</a>
+                <div class="alert alert-warning" ng-switch-when="false" ng-show="{{ENV === 'dev'}}">
+                    Si quieres <a class="alert-link" href="#/login">ingresar</a>, puedes intentar con las siguientes cuentas:<br/>- Administrador (Usuario="admin" ,  clave="admin", Teléfono: "123546789") <br/>- Operador (Usuario="user" , clave="user", Teléfono: "123546789"). <br/>- Supervisor (Usuario="ant" , clave="user", Teléfono: "123546789").,
                 </div>
             </div>
         </div>

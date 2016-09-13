@@ -6,6 +6,8 @@ import com.denuncias.domain.Denuncia;
 import com.denuncias.domain.enumeration.Estado;
 import com.denuncias.repository.CantonRepository;
 import com.denuncias.repository.DenunciaRepository;
+import com.denuncias.service.UserService;
+import com.denuncias.service.denuncias.CodeGenerator;
 import com.denuncias.web.rest.util.HeaderUtil;
 import com.denuncias.web.rest.util.LocationUtil;
 import com.denuncias.web.rest.util.PaginationUtil;
@@ -18,15 +20,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.inject.Inject;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,6 +45,32 @@ public class DenunciaResource {
     @Inject
     CantonRepository cantonRepository;
 
+    @Inject
+    CodeGenerator codeGenerator;
+
+    @Inject
+    private UserService userService;
+
+
+
+    @RequestMapping(method = RequestMethod.POST, value = "/upload")
+    public @ResponseBody ResponseEntity<Denuncia> handleFileUpload(@RequestParam("lat") String lat,
+                             @RequestParam("lon") String lon,
+                             @RequestParam("key") MultipartFile file)  {
+        try {
+            Denuncia denuncia = new Denuncia();
+            denuncia.setCodigo(codeGenerator.generarCodigo());
+            denuncia.setLatitud(lat);
+            denuncia.setLongitud(lon);
+            denuncia.setFoto(file.getBytes());
+            denuncia.setFotoContentType("image/jpeg");
+            return this.createDenuncia(denuncia);
+        }catch (Exception e){
+            log.error("Error creando denuncia", e);
+            return new ResponseEntity<Denuncia>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
     /**
      * POST  /denuncias -> Create a new denuncia.
      */
@@ -57,7 +83,6 @@ public class DenunciaResource {
         if (denuncia.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("denuncia", "idexists", "A new denuncia cannot already have an ID")).body(null);
         }
-
         Canton canton = LocationUtil.getCanton(denuncia.getLatitud(),denuncia.getLongitud());
         List<Canton> cantones = cantonRepository.findByCodigo(canton.getCodigo());
         if(!cantones.isEmpty()){
@@ -66,6 +91,7 @@ public class DenunciaResource {
         else{
             canton = cantonRepository.save(canton);
         }
+        denuncia.setCodigo(codeGenerator.generarCodigo());
         denuncia.setDireccion(LocationUtil.getDireccion(denuncia.getLatitud(),denuncia.getLongitud()));
         denuncia.setCanton(canton);
         denuncia.setFecha(ZonedDateTime.now());
@@ -89,9 +115,12 @@ public class DenunciaResource {
         if (denuncia.getId() == null) {
             return createDenuncia(denuncia);
         }
+        if(Estado.Enviada.equals(denuncia.getEstado())){
+            denuncia.setUsuarioOperador(userService.getUserWithAuthorities());
+        }
         Denuncia result = denunciaRepository.save(denuncia);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert("denuncia", denuncia.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert("denuncia", denuncia.getCodigo().toString()))
             .body(result);
     }
 

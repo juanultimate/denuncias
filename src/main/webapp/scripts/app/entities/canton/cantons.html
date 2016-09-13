@@ -1,55 +1,55 @@
 <div>
     <h2>Cantones</h2>
     <jh-alert></jh-alert>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="canton.new" >
-                    <span class="glyphicon glyphicon-plus"></span>
-                    <span
-                       >Crear nuevo Cantón
-                    </span>
-                </button>
-            </div>
-        </div>
-    </div>
+
     <br/>
+
+
     <div class="table-responsive">
+        <div class="form-group">
+            <label for="filtro-provincia" class="control-label"> Provincia: </label>
+            <select name="filtro-provincia" id="filtro-provincia" ng-model="searchParam" class="form-control">
+                <option ng-repeat="prov in provincias" value="{{prov}}">{{prov}}</option>
+            </select>
+        </div>
+
         <table class="jh-table table table-striped">
             <thead>
-                <tr jh-sort="predicate" ascending="reverse" callback="loadAll()">
-                    <th jh-sort-by="codigo"><span>Código</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="nombre"><span>Nombre</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th></th>
-                </tr>
+            <tr jh-sort="predicate" ascending="reverse" callback="loadAll()">
+                <th jh-sort-by="codigo"><span>Código</span> <span class="glyphicon glyphicon-sort"></span></th>
+                <th jh-sort-by="nombre"><span>Nombre</span> <span class="glyphicon glyphicon-sort"></span></th>
+                <th jh-sort-by="provincia"><span>Provincia</span> <span class="glyphicon glyphicon-sort"></span></th>
+                <th></th>
+            </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="canton in cantons track by canton.id">
-                    <td>{{canton.codigo}}</td>
-                    <td>{{canton.nombre}}</td>
-                    <td class="text-right">
-                        <div class="btn-group flex-btn-group-container">
-                            <button type="submit"
-                                    ui-sref="canton.detail({id:canton.id})"
-                                    class="btn btn-info btn-sm">
-                                <span class="glyphicon glyphicon-eye-open"></span>
-                                <span class="hidden-xs hidden-sm"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="canton.edit({id:canton.id})"
-                                    class="btn btn-primary btn-sm">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                                <span class="hidden-xs hidden-sm"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="canton.delete({id:canton.id})"
-                                    class="btn btn-danger btn-sm">
-                                <span class="glyphicon glyphicon-remove-circle"></span>
-                                <span class="hidden-xs hidden-sm"></span>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
+            <tr ng-repeat="canton in cantons | filter:searchParam">
+                <td>{{canton.codigo}}</td>
+                <td>{{canton.nombre}}</td>
+                <td>{{canton.provincia}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                ui-sref="canton.detail({id:canton.id})"
+                                class="btn btn-info btn-sm" title="Ver">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                            <span class="hidden-xs hidden-sm"></span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="canton.edit({id:canton.id})"
+                                class="btn btn-primary btn-sm" title="Editar">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            <span class="hidden-xs hidden-sm"></span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="canton.delete({id:canton.id})"
+                                class="btn btn-danger btn-sm" title="Eliminar">
+                            <span class="glyphicon glyphicon-remove-circle"></span>
+                            <span class="hidden-xs hidden-sm"></span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>

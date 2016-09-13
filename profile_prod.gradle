@@ -2,6 +2,10 @@ import org.apache.tools.ant.taskdefs.condition.Os
 apply plugin: 'spring-boot'
 apply plugin: 'com.moowork.node'
 
+node {
+    download = true
+    version = '0.12.7'
+}
 ext {
     logbackLoglevel = "INFO"
 }

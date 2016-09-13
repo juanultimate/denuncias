@@ -12,6 +12,7 @@ angular.module('denunciasApp')
             Auth.login({
                 username: $scope.username,
                 password: $scope.password,
+                phone: $scope.phone,
                 rememberMe: $scope.rememberMe
             }).then(function () {
                 $scope.authenticationError = false;

@@ -1,6 +1,16 @@
 <div>
     <h2>Alertas</h2>
     <jh-alert></jh-alert>
+    <!--div class="row">
+        <div class="col-xs-4 no-padding-left">
+            <button class="btn btn-primary" ui-sref="denuncia.new" >
+                <span class="glyphicon glyphicon-plus"></span>
+                <span
+                >Create new Denuncia
+                    </span>
+            </button>
+        </div>
+    </div-->
 
     <br/>
     <div class="table-responsive">
@@ -13,8 +23,7 @@
 
                     <th jh-sort-by="latitud"><span>Latitud</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="longitud"><span>Longitud</span> <span class="glyphicon glyphicon-sort"></span></th>
-
-
+                    <th jh-sort-by="longitud"><span>Cant&oacute;n</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="foto"><span>Foto</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
@@ -26,6 +35,7 @@
                     <td>{{denuncia.fecha | date:'mediumDate'}}</td>
                     <td>{{denuncia.latitud}}</td>
                     <td>{{denuncia.longitud}}</td>
+                    <td>{{denuncia.canton.nombre}}</td>
                     <td>
                         <img data-ng-src="{{'data:' + denuncia.fotoContentType + ';base64,' + denuncia.foto}}" style="max-height: 30px;" ng-if="denuncia.foto"/> {{denuncia.fotoContentType}} {{byteSize(denuncia.foto)}}
                     </td>
@@ -33,7 +43,7 @@
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
                                     ui-sref="denuncia.detail({id:denuncia.id})"
-                                    class="btn btn-info btn-sm">
+                                    class="btn btn-info btn-sm" title="Ver">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>
@@ -43,5 +53,5 @@
             </tbody>
         </table>
     </div>
-    <uib-pager total-items="totalItems" ng-model="page" ng-change="loadAll()"></uib-pager>
+    <!--uib-pager total-items="totalItems" ng-model="page" ng-change="loadAll()"></uib-pager-->
 </div>

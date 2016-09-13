@@ -37,18 +37,31 @@ public class LocationUtil {
         if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
             StringBuffer result = getResponseBody(response);
             JSONObject jsonObj2 = new JSONObject(result.toString());
+            String provincia = getProvincia(jsonObj2);
             JSONArray lista = jsonObj2.getJSONArray("elements");
             for (int i = 0; i < lista.length(); i++) {
                 if (lista.getJSONObject(i).getJSONObject("tags").has("county_code")) {
                     String codigoCanton = lista.getJSONObject(i).getJSONObject("tags").getString("county_code");
                     String nombreCanton = lista.getJSONObject(i).getJSONObject("tags").getString("name");
-                    Canton canton = new Canton(codigoCanton,nombreCanton);
+                    Canton canton = new Canton(codigoCanton,nombreCanton,provincia);
                     log.info(canton.toString());
                     return canton;
                 }
             }
         }
         return null;
+    }
+
+    private static String getProvincia(JSONObject jsonObj2) {
+        JSONArray lista = jsonObj2.getJSONArray("elements");
+        String provinciaCanton="";
+        for (int i = 0; i < lista.length(); i++) {
+            if (lista.getJSONObject(i).getJSONObject("tags").has("admin_level")&& lista.getJSONObject(i).getJSONObject("tags").get("admin_level").equals("4")) {
+                provinciaCanton = lista.getJSONObject(i).getJSONObject("tags").getString("name");
+                break;
+            }
+        }
+        return provinciaCanton;
     }
 
     private static StringBuffer getResponseBody(HttpResponse response) throws IOException {

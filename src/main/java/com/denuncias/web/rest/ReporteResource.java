@@ -7,8 +7,10 @@ import com.denuncias.domain.ReportData;
 import com.denuncias.domain.enumeration.DiaSemana;
 import com.denuncias.repository.CantonRepository;
 import com.denuncias.repository.DenunciaRepository;
+import com.denuncias.service.UserService;
 import com.denuncias.web.rest.util.PaginationUtil;
 import com.mongodb.*;
+import org.apache.commons.lang3.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +42,7 @@ import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by JuanGabriel on 23/3/2016.
@@ -67,6 +70,9 @@ public class ReporteResource {
     @Inject
     CantonRepository cantonRepository;
 
+    @Inject
+    private UserService userService;
+
 
 
     /**
@@ -78,6 +84,7 @@ public class ReporteResource {
     @Timed
     public ResponseEntity<List<ReportData>> getData(@RequestParam(value="tipo", required=false) String tipo)throws URISyntaxException {
         log.debug("REST request to get a Data Report");
+        log.debug("Current user: {}", userService.getUserWithAuthorities().getFirstName());
         List<ReportData> data = new ArrayList<ReportData>();
         switch (tipo){
             case "dia":{
@@ -88,7 +95,7 @@ public class ReporteResource {
                 DBCollection collection = mongoTemplate.getCollection("denuncia");
                 AggregationOutput output = collection.aggregate(pipeline);
                 for (DBObject item :output.results()) {
-                    data.add(new ReportData(DiaSemana.fromInteger(Integer.valueOf(item.get("_id").toString())).toString(),Long.valueOf(item.get("value").toString())));
+                    data.add(new ReportData(StringUtils.capitalize(DiaSemana.fromInteger(Integer.valueOf(item.get("_id").toString())).toString().toLowerCase()),Long.valueOf(item.get("value").toString())));
                 }
                 break;
             }
@@ -107,7 +114,8 @@ public class ReporteResource {
                 DBCollection collection = mongoTemplate.getCollection("denuncia");
                 AggregationOutput output = collection.aggregate(pipeline);
                 for (DBObject item :output.results()) {
-                    data.add(new ReportData(new DateFormatSymbols().getMonths()[(Integer.valueOf(item.get("_id").toString())-1)],Long.valueOf(item.get("value").toString())));
+                    String mes = new DateFormatSymbols(Locale.forLanguageTag("es")).getMonths()[(Integer.valueOf(item.get("_id").toString())-1)];
+                    data.add(new ReportData(StringUtils.capitalize(mes),Long.valueOf(item.get("value").toString())));
                 }
                 break;
             }

@@ -2,8 +2,6 @@
 
 angular.module('denunciasApp')
     .controller('TipoSancionController', function ($scope, $state, Reporte, ParseLinks) {
-        $scope.tipoReporte='dia';
-        $scope.tipoGrafico='pie2d';
         $scope.myDataSource = {
             chart: {
                 caption: "",
@@ -18,6 +16,12 @@ angular.module('denunciasApp')
                 $scope.myDataSource.data = result;
             });
             switch(tipoReporte) {
+                case 'anio':{
+                    $scope.myDataSource.chart.caption=""
+                    $scope.myDataSource.chart.subCaption="Alertas por año"
+                    break;
+                }
+
                 case 'dia':{
                     $scope.myDataSource.chart.caption=""
                     $scope.myDataSource.chart.subCaption="Alertas por día"
