@@ -3,7 +3,7 @@
 angular.module('denunciasApp').controller('UserManagementDialogController',
     ['$scope', '$stateParams', '$uibModalInstance', 'entity', 'User',
         function($scope, $stateParams, $uibModalInstance, entity, User) {
-
+        $scope.new = $stateParams.id === undefined ;
         $scope.user = entity;
         $scope.authorities = ["ROLE_USER", "ROLE_ADMIN", "ROLE_ANT"];
         var onSaveSuccess = function (result) {

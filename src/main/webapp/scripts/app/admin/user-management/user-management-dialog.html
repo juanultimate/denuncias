@@ -3,37 +3,36 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="clear()">&times;</button>
-        <h4 class="modal-title" id="myUserLabel">
-            Create or edit a User</h4>
+        <h4 class="modal-title" id="myUserLabel" >{{new ? 'Crear' : 'Editar'}} un Usuario</span></h4>
     </div>
     <div class="modal-body">
         <jh-alert-error></jh-alert-error>
-        <div class="form-group">
+        <!--div class="form-group">
             <label>ID</label>
             <input type="text" class="form-control" name="id"
                    ng-model="user.id" readonly>
-        </div>
+        </div-->
 
         <div class="form-group">
-            <label class="control-label">Login</label>
+            <label class="control-label">Nombre de usuario</label>
             <input type="text" class="form-control" name="login"
                    ng-model="user.login" ng-required="user.id == null" ng-maxlength="50">
 
             <div ng-show="editForm.login.$invalid">
                 <p class="help-block"
                    ng-show="editForm.login.$error.required">
-                    This field is required.
+                    Este campo es requerido.
                 </p>
 
                 <p class="help-block"
                    ng-show="editForm.login.$error.maxlength"
                    translate-value-max="50">
-                    This field cannot be longer than 50 characters.
+                    Este campo no debe contener más de cincuenta caracteres.
                 </p>
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label">FirstName</label>
+            <label class="control-label">Nombre</label>
             <input type="text" class="form-control" name="firstName"
                    ng-model="user.firstName" ng-maxlength="50">
 
@@ -41,12 +40,12 @@
                 <p class="help-block"
                    ng-show="editForm.firstName.$error.maxlength"
                    translate-value-max="50">
-                    This field cannot be longer than 50 characters.
+                    Este campo no debe contener más de 50 caracteres.
                 </p>
             </div>
         </div>
         <div class="form-group">
-            <label>LastName</label>
+            <label>Apellido</label>
             <input type="text" class="form-control" name="lastName"
                    ng-model="user.lastName" ng-maxlength="50">
 
@@ -54,37 +53,37 @@
                 <p class="help-block"
                    ng-show="editForm.lastName.$error.maxlength"
                    translate-value-max="50">
-                    This field cannot be longer than 50 characters.
+                    Este campo no debe contener más de 50 caracteres.
                 </p>
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label">Email</label>
+            <label class="control-label">Correo electrónico</label>
             <input type="text" class="form-control" name="email"
                    ng-model="user.email" required ng-maxlength="100">
 
             <div ng-show="editForm.email.$invalid">
                 <p class="help-block"
                    ng-show="editForm.email.$error.required">
-                    This field is required.
+                    Este campo es requerido.
                 </p>
 
                 <p class="help-block"
                    ng-show="editForm.email.$error.maxlength"
                    translate-value-max="100">
-                    This field cannot be longer than 100 characters.
+                    Este campo no debe contener más de 100 caracteres.
                 </p>
             </div>
         </div>
         <div class="form-group">
             <label for="activated">
                 <input ng-disabled="user.id === null" type="checkbox" id="activated" ng-model="user.activated">
-                <span>Activated</span>
+                <span>Activo</span>
             </label>
         </div>
 
         <div class="form-group">
-            <label>Profiles</label>
+            <label>Perfiles</label>
             <select class="form-control" multiple name="authority" ng-model="user.authorities"
                     ng-options="authority for authority in authorities">
             </select>
@@ -93,10 +92,10 @@
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
             <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span
-           >Cancel</span>
+           >Cancelar</span>
         </button>
         <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
-            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Guardar</span>
         </button>
     </div>
 </form>

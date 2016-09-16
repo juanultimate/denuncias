@@ -1,18 +1,18 @@
 <div>
-    <h2><span>User</span> "{{user.login}}"</h2>
+    <h2><span>Usuario</span> "{{user.login}}"</h2>
 
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Field</th>
-                    <th>Value</th>
+                    <th>Campo</th>
+                    <th>Valor</th>
                 </tr>
             </thead>
             <tbody>
             <tr>
                 <td>
-                    <span>Login</span>
+                    <span>Nombre de usuario</span>
                 </td>
                 <td>
                     <input type="text" class="input-sm form-control" value="{{user.login}}" readonly>
@@ -20,7 +20,7 @@
             </tr>
             <tr>
                 <td>
-                    <span>FirstName</span>
+                    <span>Nombre</span>
                 </td>
                 <td>
                     <input type="text" class="input-sm form-control" value="{{user.firstName}}" readonly>
@@ -28,7 +28,7 @@
             </tr>
             <tr>
                 <td>
-                    <span>LastName</span>
+                    <span>Apellido</span>
                 </td>
                 <td>
                     <input type="text" class="input-sm form-control" value="{{user.lastName}}" readonly>
@@ -36,7 +36,7 @@
             </tr>
             <tr>
                 <td>
-                    <span>Email</span>
+                    <span>Correo electrónico</span>
                 </td>
                 <td>
                     <input type="text" class="input-sm form-control" value="{{user.email}}" readonly>
@@ -44,16 +44,16 @@
             </tr>
             <tr>
                 <td>
-                    <span>Activated</span>
+                    <span>Activo</span>
                 </td>
                 <td>
                     <input type="text" class="input-sm form-control" value="{{user.activated}}" readonly>
                 </td>
             </tr>
-            
+
             <tr>
                 <td>
-                    <span>CreatedBy</span>
+                    <span>Creado por</span>
                 </td>
                 <td>
                     <input type="text" class="input-sm form-control" value="{{user.createdBy}}" readonly>
@@ -61,7 +61,7 @@
             </tr>
             <tr>
                 <td>
-                    <span>CreatedDate</span>
+                    <span>Fecha de creación</span>
                 </td>
                 <td>
                     <input type="text" class="input-sm form-control"
@@ -70,7 +70,7 @@
             </tr>
             <tr>
                 <td>
-                    <span>LastModifiedBy</span>
+                    <span>Última modificación por</span>
                 </td>
                 <td>
                     <input type="text" class="input-sm form-control" value="{{user.lastModifiedBy}}" readonly>
@@ -78,7 +78,7 @@
             </tr>
             <tr>
                 <td>
-                    <span>LastCreatedDate</span>
+                    <span>Fecha de última modificación</span>
                 </td>
                 <td>
                     <input type="text" class="input-sm form-control"
@@ -87,7 +87,7 @@
             </tr>
             <tr>
                 <td>
-                    <span>Profiles</span>
+                    <span>Perfiles</span>
                 </td>
                 <td>
                     <ul class="list-unstyled">
@@ -102,6 +102,6 @@
     <button type="submit"
             ui-sref="user-management"
             class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Volver</span>
     </button>
 </div>
