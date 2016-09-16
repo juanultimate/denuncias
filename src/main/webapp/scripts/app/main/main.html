@@ -11,7 +11,7 @@
                 <div class="alert alert-success" ng-switch-when="true">
                     Has ingresado como "{{account.authorities[0] === 'ROLE_ADMIN'?'ADMINISTRADOR':account.authorities[0] === 'ROLE_USER'? 'OPERADOR' : account.authorities[0] === 'ROLE_ANT' ? 'SUPERVISOR' :'Anónimo'}}".
                 </div>
-                <div class="alert alert-warning" ng-switch-when="false" ng-show="{{ENV === 'env'}}">
+                <div class="alert alert-warning" ng-switch-when="false" ng-show="{{ENV === 'dev'}}">
                     <a class="alert-link" href="#/login">Ingresar</a>
                 </div>
 
